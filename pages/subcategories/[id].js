@@ -1,12 +1,42 @@
 import { useRouter } from 'next/router'
-// import axios from 'axios';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-// axios.get('https://example.com/wp-json/wp/v2/posts?_embed')
 export default function CoverArtwork() {
+
+    const [ data, setData ] = useState([])
+
     const router = useRouter()
     const {id} = router.query
-    console.log({id})
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios(
+            `http://floramodioweb.local/wp-json/wp/v2/portfolio?_embed`,
+            );
+            const dataJSON = [result.data];
+            setData(dataJSON[0]);
+        };
+        fetchData();
+        }, []);
+
     return (
-        <div>Welcome to {id}</div>
+            <div className="portfolio-area-container">
+                {data.map((item, key) => {
+                    if(
+                        item._embedded["wp:term"][0][0].slug
+                        ==
+                        id
+                    ){
+                        return (
+                            <div key={key} className="portfolio-img-container">
+                                <img src={item.featured_media_src_url} alt="" />
+                                <div className="image-caption" dangerouslySetInnerHTML={{__html: item.content.rendered}} />
+                            </div>
+                            
+                        )
+                    }
+                })}
+            </div>
     )
 }

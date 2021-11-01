@@ -1,6 +1,10 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router'
 
 function SubcategoriesPanel({categorySelected, categoryId, handleSubCategoryClick}) {
+
+    const router = useRouter()
+    const pathname = router.query.id
 
     const subcategoryData = [
         {
@@ -10,27 +14,33 @@ function SubcategoriesPanel({categorySelected, categoryId, handleSubCategoryClic
         },
         {
             "parentCategory": "graphic-design",
-            "subcategory": "brands & bogos"
+            "subcategory": "brands & logos",
+            "id": "brands-and-logos"
         },
         {
             "parentCategory": "graphic-design",
-            "subcategory": "video titles"
+            "subcategory": "video titles",
+            "id": "video-titles"
         },
         {
             "parentCategory": "graphic-design",
-            "subcategory": "posters & flyers"
+            "subcategory": "posters & flyers",
+            "id": "posters-and-flyers"
         },
         {
             "parentCategory": "graphic-design",
-            "subcategory": "merch"
+            "subcategory": "merch",
+            "id": "merch-graphic-design"
         },
         {
             "parentCategory": "art-and-exhibition",
-            "subcategory": "demete"
+            "subcategory": "demete",
+            "id": "demete"
         },
         {
             "parentCategory": "merch",
-            "subcategory": "shop now"
+            "subcategory": "shop now",
+            "id": "merch-shop-now"
         }
     ]
 
@@ -47,8 +57,8 @@ function SubcategoriesPanel({categorySelected, categoryId, handleSubCategoryClic
                     {subcategoryData.map((item, id) => (
                         item.parentCategory === categoryId ? 
                                 <div key={id}>
-                                    <Link href={`/subcategories/${item.subcategory}`}> 
-                                        <a onClick={handleSubCategoryClick} className="sub-categories">{item.subcategory}</a>
+                                    <Link href={`/subcategories/${item.id}`}> 
+                                        <a onClick={handleSubCategoryClick} className={`sub-categories ${item.id == pathname ? 'active' : null}`}>{item.subcategory}</a>
                                     </Link>
                                 </div>
                             : 
@@ -56,6 +66,7 @@ function SubcategoriesPanel({categorySelected, categoryId, handleSubCategoryClic
                         ))
                     }
                 </div>
+                
         </div>
     )  
 }
