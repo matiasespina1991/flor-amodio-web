@@ -13,6 +13,7 @@ main {
   background-image: url(../images/header.png);
   animation: moveIt 30000s linear infinite;
   animation-timing-function: linear;
+  cursor: pointer;
 }
 
 @keyframes moveIt {

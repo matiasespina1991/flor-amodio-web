@@ -5,32 +5,32 @@ function SubcategoriesPanel({categorySelected, categoryId, handleSubCategoryClic
     const subcategoryData = [
         {
             "parentCategory": "graphic-design",
-            "subcategory": "Cover Artwork",
+            "subcategory": "cover artwork",
             "id": "cover-artwork"
         },
         {
             "parentCategory": "graphic-design",
-            "subcategory": "Brands & Logos"
+            "subcategory": "brands & bogos"
         },
         {
             "parentCategory": "graphic-design",
-            "subcategory": "Video Titles"
+            "subcategory": "video titles"
         },
         {
             "parentCategory": "graphic-design",
-            "subcategory": "Posters & Flyers"
+            "subcategory": "posters & flyers"
         },
         {
             "parentCategory": "graphic-design",
-            "subcategory": "Merch"
+            "subcategory": "merch"
         },
         {
             "parentCategory": "art-and-exhibition",
-            "subcategory": "DEMETE"
+            "subcategory": "demete"
         },
         {
             "parentCategory": "merch",
-            "subcategory": "SHOP NOW"
+            "subcategory": "shop now"
         }
     ]
 
@@ -47,7 +47,7 @@ function SubcategoriesPanel({categorySelected, categoryId, handleSubCategoryClic
                     {subcategoryData.map((item, id) => (
                         item.parentCategory === categoryId ? 
                                 <div key={id}>
-                                    <Link href="/subcategory"> 
+                                    <Link href={`/subcategories/${item.subcategory}`}> 
                                         <a onClick={handleSubCategoryClick} className="sub-categories">{item.subcategory}</a>
                                     </Link>
                                 </div>

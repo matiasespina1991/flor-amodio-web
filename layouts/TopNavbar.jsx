@@ -1,11 +1,21 @@
+import Link from 'next/link';
+
 function TopNavbar() {
     return(
         <div className="top-navbar">
             <nav className="top-navbar-container">
-                <a href="#">ABOUT</a>
-                <a href="#">CONTACT</a>
-                <a href="#">INSTAGRAM</a>
-                <a href="#">BEHANCE</a>
+                <Link href="/about">
+                    <a href="#">ABOUT</a>
+                </Link>
+                <Link href="/contact">
+                    <a href="#">CONTACT</a>
+                </Link>
+                <Link href="#">
+                    <a href="#">INSTAGRAM</a>
+                </Link>
+                <Link href="#">
+                    <a href="#">BEHANCE</a>
+                </Link>
             </nav>
         </div>
     )
