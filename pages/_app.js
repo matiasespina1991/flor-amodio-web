@@ -5,7 +5,9 @@ import TopNavbar from '../layouts/TopNavbar'
 import LeftNavbar from '../layouts/LeftNavbar';
 import MainContent from '../layouts/MainContent'
 
+
 function MyApp({ Component, pageProps }) {
+
   return (
     <>
       <Header/>

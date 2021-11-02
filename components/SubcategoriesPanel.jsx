@@ -57,7 +57,7 @@ function SubcategoriesPanel({categorySelected, categoryId, handleSubCategoryClic
                     {subcategoryData.map((item, id) => (
                         item.parentCategory === categoryId ? 
                                 <div key={id}>
-                                    <Link href={`/subcategories/${item.id}`}> 
+                                    <Link scroll={false} href={`/portfolio/${item.id}`}> 
                                         <a onClick={handleSubCategoryClick} className={`sub-categories ${item.id == pathname ? 'active' : null}`}>{item.subcategory}</a>
                                     </Link>
                                 </div>

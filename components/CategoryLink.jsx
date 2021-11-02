@@ -1,7 +1,7 @@
 function CategoryLink({handleCategoryClick, categoryName, categoryId}) {
     return (
       <>
-          <button className="left-link" id={categoryId} onClick={handleCategoryClick}>{categoryName}</button>
+          <button className="left-link fade-in" id={categoryId} onClick={handleCategoryClick}>{categoryName}</button>
       </>
     );
   }
