@@ -37,7 +37,7 @@ function TopNavbar() {
                     <a className="fade-in" href="https://www.instagram.com/amodioflori/" target="_blank" rel="noreferrer">INSTAGRAM</a>
                 </Link>
                 <Link href="https://www.behance.net/FlorAmodio">
-                    <a className="fade-in" href="https://www.behance.net/FlorAmodio" target="_blank" rel="noreferrer">BEHANCE</a>
+                    <a className="fade-in" href="https://www.behance.net/FlorAmodio" target="_blank" rel="noreferrer">BEHANCES</a>
                 </Link>
             </nav>
         </div>
