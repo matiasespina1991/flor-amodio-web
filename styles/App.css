@@ -29,6 +29,7 @@ button {
   height: 3rem;
   width: 100%;
   background-image: url(../images/header.svg);
+  background-size: cover;
   animation: moveIt 30000s linear infinite;
   animation-timing-function: linear;
   cursor: pointer;
