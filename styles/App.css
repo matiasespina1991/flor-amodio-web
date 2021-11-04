@@ -98,7 +98,7 @@ main div {
 .left-navbar {
   float: left;
   padding: 9rem 4rem;
-  min-width: 26rem;
+  min-width: 34rem;
 }
 
 .left-link {
@@ -138,11 +138,12 @@ main div {
 }
 
 .sub-categories-container div:nth-child(2) {
-  margin-left: 9.7rem;
+  text-align: right;
 }
 
 .sub-categories-container div:nth-child(4) {
-  margin-left: 7rem;
+  margin-right: 3rem;
+  text-align: right;
 }
 
 .lower-panel.isExpanded a {
