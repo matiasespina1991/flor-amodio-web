@@ -27,12 +27,12 @@ export default function Portfolio() {
 
         useLayoutEffect(() => {
             gsap.fromTo(q(".fade-in"), {
-                // opacity: 0,
+                opacity: 0,
             },{
-                // opacity: 1,
-                duration: 0.8,
+                opacity: 1,
+                duration: 0.4,
                 x: -5,
-                stagger: 0.1,
+                stagger: 0.15,
             });
         }, [{id}])
 
