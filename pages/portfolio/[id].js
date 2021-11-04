@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
-import { useEffect, useState, useRef } from 'react';
-import { gsap } from 'gsap';
+import { useEffect, useState, useRef, useLayoutEffect } from 'react';
+import { gsap } from 'gsap'
 import CMS_PATH from '../../components/CMS_PATH'
-import axios from 'axios';
+import axios from 'axios'
 
 export default function Portfolio() {
 
@@ -11,30 +11,30 @@ export default function Portfolio() {
     const router = useRouter()
     const {id} = router.query
 
-    const el = useRef();
-    const q = gsap.utils.selector(el);
+    const el = useRef()
+    const q = gsap.utils.selector(el)
 
     useEffect(() => {
         const fetchData = async () => {
             const result = await axios(
             `${CMS_PATH()}/wp-json/wp/v2/portfolio?_embed`,
             );
-            const dataJSON = [result.data];
-            setData(dataJSON[0]);
+            const dataJSON = [result.data]
+            setData(dataJSON[0])
         };
-        fetchData();
-        }, []);
+        fetchData()
+        }, [])
 
-        useEffect(() => {
+        useLayoutEffect(() => {
             gsap.fromTo(q(".fade-in"), {
-                opacity: 0,
+                // opacity: 0,
             },{
-                opacity: 1,
+                // opacity: 1,
                 duration: 0.8,
                 x: -5,
                 stagger: 0.1,
             });
-        }, [{id}]);
+        }, [{id}])
 
     return (
             <div ref={el} className="portfolio-area-container">

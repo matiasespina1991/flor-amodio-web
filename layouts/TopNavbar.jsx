@@ -33,11 +33,8 @@ function TopNavbar() {
                 <Link scroll={false} href="/contact" className={`sub-categories ${pathname == "/contact" ? 'active' : null}`}>
                     <a className={`${pathname == "/contact" ? 'active' : null} fade-in`}>CONTACT</a>
                 </Link>
-                <Link href="https://www.instagram.com/amodioflori/">
-                    <a className="fade-in" href="https://www.instagram.com/amodioflori/" target="_blank" rel="noreferrer">INSTAGRAM</a>
-                </Link>
-                <Link href="https://www.behance.net/FlorAmodio">
-                    <a className="fade-in" href="https://www.behance.net/FlorAmodio" target="_blank" rel="noreferrer">BEHANCES</a>
+                <Link href="/nft">
+                    <a className={`${pathname == "/nft" ? 'active' : null} fade-in`}>NFT</a>
                 </Link>
             </nav>
         </div>

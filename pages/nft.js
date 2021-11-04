@@ -4,7 +4,7 @@ import { gsap } from 'gsap';
 import CMS_PATH from '../components/CMS_PATH';
 import axios from 'axios';
 
-export default function ContactPage(){
+export default function NFT(){
 
     const [ data, setData ] = useState([])
 
@@ -17,7 +17,7 @@ export default function ContactPage(){
     useEffect(() => {
         const fetchData = async () => {
             const result = await axios(
-            `${CMS_PATH()}/wp-json/wp/v2/pages/?slug=contact`,
+            `${CMS_PATH()}/wp-json/wp/v2/pages/?slug=nft`,
             );
             const dataJSON = [result.data];
             setData(dataJSON[0]);
@@ -25,26 +25,25 @@ export default function ContactPage(){
         fetchData();
         }, []);
 
-    useEffect(() => {
-        gsap.fromTo(q(".fade-in"), {
-            opacity: 0,
-        },{
-            opacity: 1,
-            duration:0.2,
-        });
-    }, [{id}]);
-
+        useEffect(() => {
+            gsap.fromTo(q(".fade-in"), {
+                opacity: 0,
+            },{
+                opacity: 1,
+                duration:0.2,
+            });
+        }, [{id}]);
 
     if(data[0]){
         return (
             <div ref={el}>
-                <p className="contact-p fade-in" dangerouslySetInnerHTML={{__html: data[0].content.rendered}} />
+                <p className="nft-p fade-in" dangerouslySetInnerHTML={{__html: data[0].content.rendered}} />
             </div>
         )
     } else if(data[1]){
         return (
             <div ref={el}>
-                <p className="contact-p fade-in" dangerouslySetInnerHTML={{__html: data[1].content.rendered}} />
+                <p className="nft-p fade-in" dangerouslySetInnerHTML={{__html: data[1].content.rendered}} />
             </div>
         )
     } else {

@@ -74,10 +74,25 @@ button {
   color: #00a45a;
 }
 
-.about-p {
+.about-p,
+.contact-p,
+.nft-p {
   padding: 0.4rem 0;
   line-height: 1.7rem;
   color: #00a45a;
+  text-transform: uppercase;
+}
+
+.about-p a:hover,
+.contact-p a:hover,
+.nft-p a:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/*For 404 page*/
+main div {
+  background: transparent !important;
 }
 
 .left-navbar {
