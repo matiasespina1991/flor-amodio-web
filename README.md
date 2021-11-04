@@ -2,9 +2,8 @@ Project developedusing Next JS and Wordpress as Headless CMS
 
 https://amodioflorencia.com/
 
-The following is an example of a React component rendering data obtained from the Wordpress API of the website:
-https://www.amodioflorencia.com/wp-json/wp/v2/portfolio?_embed
 
+The following is an example of a React component rendering data obtained from the Wordpress API of the website:
 
 ``` javascript
 import { useEffect, useState } from 'react';
@@ -47,4 +46,6 @@ export default function Portfolio() {
 
 ```
 
+This is how the API of the following path looks like:
+https://www.amodioflorencia.com/wp-json/wp/v2/portfolio?_embed
 <img src="https://i.ibb.co/r6Gxjs1/Screen-Shot-2021-11-04-at-11-04-37-PM.png" alt="" />
