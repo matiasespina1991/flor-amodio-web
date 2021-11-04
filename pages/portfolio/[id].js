@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState, useRef, useLayoutEffect } from 'react';
+import Image from 'next/image'
 import { gsap } from 'gsap'
 import CMS_PATH from '../../components/CMS_PATH'
 import axios from 'axios'
@@ -46,7 +47,7 @@ export default function Portfolio() {
                     ){
                         return (
                             <div key={key} className="portfolio-img-container fade-in">
-                                <img src={item.featured_media_src_url} alt="" />
+                                <Image src={item.featured_media_src_url} alt="" />
                                 <div className="image-caption" dangerouslySetInnerHTML={{__html: item.content.rendered}} />
                             </div>
                             
