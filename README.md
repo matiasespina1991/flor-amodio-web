@@ -1,4 +1,4 @@
-Project developedusing Next JS and Wordpress as Headless CMS
+Project developed using Next JS and Wordpress as Headless CMS
 
 https://amodioflorencia.com/
 
