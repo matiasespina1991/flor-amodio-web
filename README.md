@@ -47,4 +47,4 @@ export default function Portfolio() {
 
 ```
 
-<img scr="https://i.ibb.co/r6Gxjs1/Screen-Shot-2021-11-04-at-11-04-37-PM.png" alt="" />
+<img src="https://i.ibb.co/r6Gxjs1/Screen-Shot-2021-11-04-at-11-04-37-PM.png" alt="" />
