@@ -2,7 +2,7 @@ Project developedusing Next JS and Wordpress as Headless CMS
 
 https://amodioflorencia.com/
 
-The following is an example using this Wordpress JSON as an example:
+The following is an example of a React component rendering data obtained from a Wordpress JSON file:
 https://www.amodioflorencia.com/wp-json/wp/v2/portfolio?_embed
 
 
