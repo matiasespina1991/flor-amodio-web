@@ -17,7 +17,7 @@ export default function About(){
     useEffect(() => {
         const fetchData = async () => {
             const result = await axios(
-            `${CMS_PATH()}/wp-json/wp/v2/pages/?slug=about`,
+            `${CMS_PATH}/wp-json/wp/v2/pages/?slug=about`,
             );
             const dataJSON = [result.data];
             setData(dataJSON[0]);

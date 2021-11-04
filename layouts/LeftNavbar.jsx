@@ -1,6 +1,6 @@
 import CategoryLink from '../components/CategoryLink'
 import SubcategoriesPanel from '../components/SubcategoriesPanel';
-import { useEffect, useState, useRef } from 'react';
+import { useLayoutEffect, useState, useRef } from 'react';
 import { gsap } from 'gsap';
 
 
@@ -15,7 +15,7 @@ function LeftNavbar({children}) {
         setCategorySelected(id.target.id);
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         gsap.fromTo(q(".fade-in"), {
             opacity: 0,
             y: -30,

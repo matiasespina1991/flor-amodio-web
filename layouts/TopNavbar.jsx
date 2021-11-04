@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import { useRouter } from 'next/router'
 import { gsap } from 'gsap';
 
@@ -12,7 +12,7 @@ function TopNavbar() {
     const el = useRef();
     const q = gsap.utils.selector(el);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         gsap.fromTo(q(".fade-in"), {
             opacity: 0,
             x: -40,

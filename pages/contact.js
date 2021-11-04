@@ -17,7 +17,7 @@ export default function ContactPage(){
     useEffect(() => {
         const fetchData = async () => {
             const result = await axios(
-            `${CMS_PATH()}/wp-json/wp/v2/pages/?slug=contact`,
+            `${CMS_PATH}/wp-json/wp/v2/pages/?slug=contact`,
             );
             const dataJSON = [result.data];
             setData(dataJSON[0]);

@@ -114,16 +114,23 @@ main div {
 }
 
 .lower-panel {
-  font-size: 0;
+  max-height: 0;
   transition: 0.3s;
   overflow: hidden;
+  transition-timing-function: cubic-bezier(0, 1.04, 0.35, 0.99);
+  transition: 0.7s;
 }
 
-.lower-panel a {
-  transition: 0.7s;
-  transition-timing-function: cubic-bezier(0, 1.04, 0.35, 0.99);
-  font-size: 0;
-  color: transparent;
+.lower-panel.isExpanded {
+  max-height: 9rem;
+}
+
+.lower-panel.isExpanded a {
+  color: black;
+}
+
+.sub-categories-container div {
+  padding: 0.4rem 0;
 }
 
 .sub-categories {
@@ -134,10 +141,6 @@ main div {
   text-transform: uppercase;
 }
 
-.isExpanded .sub-categories-container div {
-  padding: 0.4rem 0;
-}
-
 .sub-categories-container div:nth-child(2) {
   text-align: right;
 }
@@ -146,12 +149,6 @@ main div {
   margin-right: 15%;
   text-align: right;
   margin-left: 3rem;
-}
-
-.lower-panel.isExpanded a {
-  font-size: 0.9rem;
-  color: black;
-  min-width: max-content;
 }
 
 .lower-panel a.active {

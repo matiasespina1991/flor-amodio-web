@@ -1,7 +1,6 @@
-export default function CMS_PATH() {
-    return 'https://amodioflorencia.com'
-}
+const CMS_PATH = 'https://amodioflorencia.com'
 
-// export default function CMS_PATH() {
-//     return 'http://floramodioweb.local'
-// }
+export default CMS_PATH
+
+
+//  local: 'http://floramodioweb.local'

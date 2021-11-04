@@ -17,7 +17,7 @@ export default function NFT(){
     useEffect(() => {
         const fetchData = async () => {
             const result = await axios(
-            `${CMS_PATH()}/wp-json/wp/v2/pages/?slug=nft`,
+            `${CMS_PATH}/wp-json/wp/v2/pages/?slug=nft`,
             );
             const dataJSON = [result.data];
             setData(dataJSON[0]);
