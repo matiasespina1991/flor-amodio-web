@@ -203,9 +203,15 @@ main div {
     margin: auto;
   }
   .left-navbar {
-    padding: 7rem 1.8rem;
+    padding: 7rem 1.3rem;
     width: 13rem;
     padding-right: 1.3rem;
+  }
+  .lower-panel.isExpanded {
+    max-height: 12rem;
+  }
+  .lower-panel.isExpanded a {
+    min-width: 8rem;
   }
   .left-navbar button {
     font-size: 0.9rem !important;
@@ -225,10 +231,14 @@ main div {
   }
   .portfolio-img-container {
     padding: 0.7rem 0rem;
-    padding-bottom: 1rem;
+    padding-bottom: 2rem;
+    text-align: center;
+  }
+  .portfolio-img-container:first-child {
+    min-height: 18rem;
   }
   .portfolio-img-container img {
-    width: 93%;
+    width: 90%;
   }
   .about-p,
   .contact-p,
