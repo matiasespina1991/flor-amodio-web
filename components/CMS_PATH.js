@@ -1,4 +1,4 @@
-const CMS_PATH = 'https://amodioflorencia.com'
+const CMS_PATH = 'https://cms.amodioflorencia.com/index.php'
 
 export default CMS_PATH
 
