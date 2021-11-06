@@ -5,9 +5,15 @@ import TopNavbar from '../layouts/TopNavbar'
 import LeftNavbar from '../layouts/LeftNavbar';
 import MainContent from '../layouts/MainContent'
 import Head from 'next/head'
-
+import { useState, useEffect } from 'react'
 
 function MyApp({ Component, pageProps }) {
+
+  const [ DOMloading, setDOMloading ] = useState(true)
+
+  useEffect(() => {
+    setDOMloading(false)
+  }, [])
 
   return (
     <>
@@ -16,6 +22,10 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
+      {DOMloading ?
+      <div></div>
+      :
+      <>
       <Header/>
       <div className="body-wrapper">
         <LeftNavbar />
@@ -26,6 +36,8 @@ function MyApp({ Component, pageProps }) {
             </MainContent>
           </div>
       </div>
+      </>
+      }
     </>
   )
 }
