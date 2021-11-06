@@ -18,9 +18,10 @@ function TopNavbar() {
             x: -40,
         },{
             opacity: 1,
-            duration: 0.4,
+            duration: 0.3,
+            delay: 1.9,
             x:0,
-            stagger: 0.2,
+            stagger: 0.35,
         });
     }, []);
 

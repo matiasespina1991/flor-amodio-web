@@ -21,11 +21,11 @@ function LeftNavbar({children}) {
             y: -30,
         },{
             opacity: 1,
-            delay: 0.2,
+            delay: 1.9,
             duration: 0.8,
             ease: "power4",
             y:0,
-            stagger: 0.2,
+            stagger: 0.35,
         });
     }, []);
 

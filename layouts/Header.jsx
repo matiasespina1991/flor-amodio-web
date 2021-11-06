@@ -12,8 +12,8 @@ function Header() {
             opacity: 0,
         },{
             opacity: 1,
-            duration: 4,
-            delay: 0.1,
+            duration: 5,
+            delay: 0.6,
             ease: "back.out"
         });
     }, []);

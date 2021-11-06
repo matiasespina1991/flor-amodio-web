@@ -3,11 +3,14 @@ import { useEffect, useState, useRef, useLayoutEffect } from 'react'
 import CMS_PATH from '../../components/CMS_PATH'
 import { gsap } from 'gsap'
 import axios from 'axios'
+import { isBlock } from 'typescript'
 
 export default function Portfolio() {
 
     // React state
     const [ JSON_data, setJSON_data ] = useState([])
+    const [ isFetching, setIsFetching ] = useState(true)
+    const [ imgLoaded, setImgLoaded ] = useState(false)
 
     // Browser path (ex. "/contact", "/about")
     const router = useRouter()
@@ -23,6 +26,7 @@ export default function Portfolio() {
 
             // Saving wordpress JSON data to React state
             setJSON_data(json[0])
+            setIsFetching(false)
     };
     fetchData()
     }, [])
@@ -31,12 +35,14 @@ export default function Portfolio() {
     const parentContainer = useRef()
     const querySel = gsap.utils.selector(parentContainer)
 
+
     // GSAP function
     useLayoutEffect(() => {
         gsap.fromTo(querySel(".fade-in"), {
             opacity: 0,
         },{
             opacity: 1,
+            display: "block",
             duration: 0.4,
             x: -5,
             stagger: 0.15,
@@ -44,24 +50,38 @@ export default function Portfolio() {
         // GSAP effect triggered by changes in the pathname
     }, [pathname])
 
+    const imageIsLoaded = () => {
+        setImgLoaded(true)
+    }
+
     // Retruning wordpress data into HTML using javascript
     return (
-            <div ref={parentContainer} className="portfolio-area-container">
-                {JSON_data.map((wp_item, key) => {
-                    if(
-                        wp_item._embedded["wp:term"][0][0].slug
-                        ==
-                        pathname
-                    ){
-                        return (
-                            <div key={key} className="portfolio-img-container fade-in">
-                                <img src={wp_item.featured_media_src_url} alt="" />
-                                <div className="image-caption" dangerouslySetInnerHTML={{__html: wp_item.content.rendered}} />
-                            </div>
-                            
-                        )
-                    }
-                })}
-            </div>
+        <>
+            { (isFetching && !imgLoaded) ?
+                <div className="loader-container">
+                    <img className="main-loader" src="https://thumbs.gfycat.com/OrganicMajorFallowdeer.webp" />
+                </div>
+                :
+                <>
+                <div ref={parentContainer} className="portfolio-area-container">
+                    {JSON_data.map((wp_item, key) => {
+                        if(
+                            wp_item._embedded["wp:term"][0][0].slug
+                            ==
+                            pathname
+                        ){
+                            return (
+                                <div key={key} className="portfolio-img-container fade-in">
+                                    <img onLoad={imageIsLoaded} src={wp_item.featured_media_src_url} alt="" />
+                                    {imgLoaded ? <div className="image-caption" dangerouslySetInnerHTML={{__html: wp_item.content.rendered}} /> : ""}
+                                </div>
+                                
+                            )
+                        }
+                    })}
+                </div>
+                </>
+            }
+        </>
     )
 }
