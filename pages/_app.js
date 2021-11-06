@@ -21,6 +21,11 @@ function MyApp({ Component, pageProps }) {
         <title>AMODIOFLORI art+design</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta property="og:title" content="AMODIOFLORI - art+design"/>
+        <meta property="og:url" content="https://www.amodioflorencia.com/"/>
+        <meta property="og:locale" content="en_GB" />
+        <meta property="og:site_name" content="Authxrs"/>
+        <meta property="og:image" content="https://cms.amodioflorencia.com/wp-content/uploads/2021/11/LOGO-3D-FINAL-1.png" itemProp="image" />
       </Head>
       {DOMloading ?
       <div></div>
