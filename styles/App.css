@@ -198,7 +198,8 @@ main div {
 }
 
 .main-loader {
-  width: 22rem;
+  width: 100%;
+  max-width: 22rem;
   position: relative;
   left: -6%;
   filter: grayscale(1);
