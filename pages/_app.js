@@ -16,9 +16,9 @@ function MyApp({ Component, pageProps }) {
   }, [])
 
   return (
-    <><html lang="en-US" />
+    <>
       <Head>
-        
+        <html lang="en-US" />
         <title>AMODIOFLORI art+design</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
