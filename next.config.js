@@ -3,7 +3,7 @@ module.exports = {
   images: {
     domains: ['amodioflorencia.com'],
   },
-  locales: ["en"],
-  defaultLocale: "en",
+  locales: ["en-US"],
+  defaultLocale: "en-US",
   }
 
