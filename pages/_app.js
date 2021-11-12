@@ -21,6 +21,8 @@ function MyApp({ Component, pageProps }) {
         <title>AMODIOFLORI art+design</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="preconnect" href="https://cms.amodioflorencia.com/index.php/wp-json/wp/v2/portfolio?_embed" />
+        <link rel="dns-prefetch" href="https://cms.amodioflorencia.com/index.php/wp-json/wp/v2/portfolio?_embed" />
         <meta property="og:title" content="AMODIOFLORI - art+design"/>
         <meta property="og:url" content="https://www.amodioflorencia.com/"/>
         <meta property="og:locale" content="en_GB" />

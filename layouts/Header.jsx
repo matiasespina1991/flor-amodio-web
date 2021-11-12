@@ -23,7 +23,7 @@ function Header() {
             <div ref={el}>
                 <div className="header fade-in">
                 </div>
-             </div>
+            </div>
         </Link>
     )
 }
