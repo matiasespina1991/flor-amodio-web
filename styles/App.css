@@ -167,13 +167,19 @@ main div {
   justify-items: center;
 }
 
-.portfolio-img-container:nth-child(even) {
+.portfolio-img-caption-wrapper {
+  padding: 0.7rem 1rem;
+}
+
+.portfolio-img-caption-wrapper:nth-child(even) {
   transform: translateY(9rem);
 }
 
 .portfolio-img-container {
   max-width: 500px;
-  padding: 0.7rem 1rem;
+  width: 400px;
+  min-height: 400px;
+  position: relative;
   cursor: pointer;
 }
 
@@ -229,6 +235,7 @@ main div {
   }
   .lower-panel.isExpanded {
     max-height: 12rem;
+    min-width: 10rem;
   }
   .lower-panel.isExpanded a {
     min-width: 8rem;
@@ -243,6 +250,9 @@ main div {
   .sub-categories-container div:nth-child(2) {
     margin-left: 0rem;
     text-align: left;
+  }
+  .sub-categories {
+    width: max-content;
   }
   .top-navbar-container {
     display: flex;
