@@ -3,7 +3,7 @@ import { useEffect, useState, useRef, useLayoutEffect } from 'react'
 import CMS_PATH from '../../components/CMS_PATH'
 import { gsap } from 'gsap'
 import axios from 'axios'
-import { isBlock } from 'typescript'
+import Image from 'next/image'
 
 export default function Portfolio() {
 
@@ -59,7 +59,7 @@ export default function Portfolio() {
         <>
             { (isFetching && !imgLoaded) ?
                 <div className="loader-container">
-                    <img className="main-loader" src="https://thumbs.gfycat.com/OrganicMajorFallowdeer.webp" />
+                    <Image className="main-loader" src="https://thumbs.gfycat.com/OrganicMajorFallowdeer.webp" alt="" width={500} height={500} />
                 </div>
                 :
                 <>
