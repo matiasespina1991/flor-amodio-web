@@ -59,7 +59,7 @@ export default function Portfolio() {
         <>
             { (isFetching && !imgLoaded) ?
                 <div className="loader-container">
-                    <Image className="main-loader" src="https://thumbs.gfycat.com/OrganicMajorFallowdeer.webp" alt="" width={500} height={500} />
+                    <img className="main-loader" src="https://thumbs.gfycat.com/OrganicMajorFallowdeer.webp" alt="" />
                 </div>
                 :
                 <>
@@ -72,7 +72,7 @@ export default function Portfolio() {
                         ){
                             return (
                                 <div key={key} className="portfolio-img-container fade-in">
-                                    <img onLoad={imageIsLoaded} src={wp_item.featured_media_src_url} alt="" />
+                                    <Image onLoad={imageIsLoaded} src={wp_item.featured_media_src_url} alt="" width={500} height={500} />
                                     {imgLoaded ? <div className="image-caption" dangerouslySetInnerHTML={{__html: wp_item.content.rendered}} /> : ""}
                                 </div>
                                 
