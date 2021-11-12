@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="dns-prefetch" href="https://cms.amodioflorencia.com/" />
-        <link rel="preconnect" href="https://cms.amodioflorencia.com/index.php/wp-json/wp/v2/portfolio?_embed" />
+        <link rel="preconnect" href="https://cms.amodioflorencia.com/" />
         <meta name="description" content="Florencia Amodio is an artist & graphic designer based in Buenos Aires, Argentina."></meta>
         <meta property="og:title" content="AMODIOFLORI - art+design"/>
         <meta property="og:url" content="https://www.amodioflorencia.com/"/>
