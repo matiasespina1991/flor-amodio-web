@@ -72,7 +72,7 @@ export default function Portfolio() {
                         ){
                             return (
                                 <div key={key} className="portfolio-img-container fade-in">
-                                    <Image onLoadingComplete={imageIsLoaded} src={wp_item.featured_media_src_url} alt="" width={500} height={auto} placeholder="blur" />
+                                    <Image onLoadingComplete={imageIsLoaded} src={wp_item.featured_media_src_url} alt="" width="100%" height="100%" placeholder="blur" />
                                     {imgLoaded ? <div className="image-caption" dangerouslySetInnerHTML={{__html: wp_item.content.rendered}} /> : ""}
                                 </div>
                                 
