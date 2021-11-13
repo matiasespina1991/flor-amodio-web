@@ -3,7 +3,7 @@ import { useEffect, useState, useRef, useLayoutEffect } from 'react'
 import CMS_PATH from '../../components/CMS_PATH'
 import { gsap } from 'gsap'
 import axios from 'axios'
-import Image from 'next/image'
+// import Image from 'next/image'
 
 export default function Portfolio() {
 
@@ -27,6 +27,7 @@ export default function Portfolio() {
             // Saving wordpress JSON data to React state
             setJSON_data(json[0])
             setIsFetching(false)
+            
     };
     fetchData()
     }, [])
@@ -53,15 +54,12 @@ export default function Portfolio() {
     const imageIsLoaded = () => {
         setImgLoaded(true)
     }
-
     // Retruning wordpress data into HTML using javascript
     return (
         <>
-            { (isFetching && !imgLoaded) ?
-                <div className="loader-container">
+                <div className={`loader-container ${(isFetching && !imgLoaded) ? null : 'hidden'}`}>
                     <img className="main-loader" src="https://thumbs.gfycat.com/OrganicMajorFallowdeer.webp" alt="" />
                 </div>
-                :
                 <>
                 <div ref={parentContainer} className="portfolio-area-container">
                     {JSON_data.map((wp_item, key) => {
@@ -73,7 +71,8 @@ export default function Portfolio() {
                             return (
                                 <div key={key} className="portfolio-img-caption-wrapper fade-in">
                                     <div className="portfolio-img-container">
-                                        <Image onLoadingComplete={imageIsLoaded} src={wp_item.featured_media_src_url} alt="" layout="fill" objectFit="contain" quality="100" loader='imgix' />    
+                                        <img onLoad={() => imageIsLoaded()} src={wp_item.featured_media_src_url} alt="" />
+                                        {/* <Image onLoadingComplete={imageIsLoaded} src={wp_item.featured_media_src_url} alt="" layout="fill" objectFit="contain" quality="100" />     */}
                                     </div>
                                     {imgLoaded ? <div className="image-caption" dangerouslySetInnerHTML={{__html: wp_item.content.rendered}} /> : ""}
                                 </div>
@@ -83,7 +82,6 @@ export default function Portfolio() {
                     })}
                 </div>
                 </>
-            }
         </>
     )
 }

@@ -29,6 +29,10 @@ button {
   font-family: "Archivo", sans-serif;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .header {
   height: 3rem;
   width: 100%;
