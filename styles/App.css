@@ -326,3 +326,25 @@ main div {
     padding: 0;
   }
 }
+
+@media (max-width: 480px) {
+  .modular-image-container {
+    height: fit-content;
+  }
+  .modular-image {
+    width: 100%;
+  }
+
+  .modular {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .close-modular {
+    top: 0;
+    right: 0;
+    font-size: 2.5rem;
+    position: absolute;
+  }
+}
