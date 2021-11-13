@@ -39,7 +39,7 @@ main {
 }
 
 .hidden-modular {
-  backdrop-filter: blur(0) saturate(0);
+  backdrop-filter: blur(0);
   pointer-events: none;
   filter: opacity(0);
 }

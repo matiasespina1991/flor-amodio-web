@@ -19,36 +19,22 @@ function Portfolio() {
     const pathname = router.query.id
 
     // Fetch from wordpress API
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const wordpressApi = await axios(
-    //         `${CMS_PATH}/wp-json/wp/v2/portfolio?_embed`);
-    //         const json = [wordpressApi.data]
-
-    //         setJSON_data(json[0])
-    //         console.log(json)
-    //         setIsFetching(false)
-            
-    // };
-    // fetchData()
-    // }, [])
-
     useEffect(() => {     
         const getData = async () => {  
-          await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?_embed`)  
-          .then(wordpressApi => {  
-            console.log(wordpressApi) 
-            const json = [wordpressApi.data] 
-            setJSON_data(json[0])
-            console.log(json)
-            setIsFetching(false)
-          })  
-          .catch(err => {  
+            await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?_embed`)  
+            .then(wordpressApi => {  
+                console.log(wordpressApi) 
+                const json = [wordpressApi.data] 
+                setJSON_data(json[0])
+                console.log(json)
+                setIsFetching(false)
+            })  
+            .catch(err => {  
             console.log(err)  
-          });  
+            });  
         }  
         getData()  
-      }, [])
+    }, [])
 
     // Query selector to target HTML element for GSAP effects
     const parentContainer = useRef()
