@@ -47,7 +47,7 @@ function Portfolio() {
             opacity: 1,
             display: "block",
             duration: 0.4,
-            x: -5,
+            // x: -5,
             stagger: 0.15,
         });
         // GSAP effect triggered by changes in the pathname
