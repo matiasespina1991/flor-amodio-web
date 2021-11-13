@@ -5,12 +5,14 @@ import { gsap } from 'gsap'
 import axios from 'axios'
 // import Image from 'next/image'
 
-export default function Portfolio() {
+function Portfolio() {
 
     // React state
     const [ JSON_data, setJSON_data ] = useState([])
     const [ isFetching, setIsFetching ] = useState(true)
     const [ imgLoaded, setImgLoaded ] = useState(false)
+    const [ modularON, setModularON ] = useState(false)
+    const [ imageInModular, setImageInModular ] = useState('')
 
     // Browser path (ex. "/contact", "/about")
     const router = useRouter()
@@ -54,6 +56,11 @@ export default function Portfolio() {
     const imageIsLoaded = () => {
         setImgLoaded(true)
     }
+
+    const handleOnClickImage = (e) => {
+        setModularON(true)
+        setImageInModular(e.target.src)
+    }
     // Retruning wordpress data into HTML using javascript
     return (
         <>
@@ -71,7 +78,7 @@ export default function Portfolio() {
                             return (
                                 <div key={key} className="portfolio-img-caption-wrapper fade-in">
                                     <div className="portfolio-img-container">
-                                        <img onLoad={() => imageIsLoaded()} src={wp_item.featured_media_src_url} alt="" />
+                                        <img onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={wp_item.featured_media_src_url} alt="" />
                                         {/* <Image onLoadingComplete={imageIsLoaded} src={wp_item.featured_media_src_url} alt="" layout="fill" objectFit="contain" quality="100" />     */}
                                     </div>
                                     {imgLoaded ? <div className="image-caption" dangerouslySetInnerHTML={{__html: wp_item.content.rendered}} /> : ""}
@@ -81,7 +88,16 @@ export default function Portfolio() {
                         }
                     })}
                 </div>
+                <div className={`modular ${modularON ? "" : 'hidden-modular'}`}>
+                    <div onClick={() => setModularON(false)} className="close-modular">X</div>
+                    <div onClick={() => setModularON(false)} className="modular-image-container">
+                        <img className="modular-image" src={imageInModular} alt="" />
+                    </div>
+                </div>
                 </>
         </>
     )
 }
+
+export default Portfolio
+

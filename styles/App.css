@@ -25,6 +25,48 @@ main {
   height: calc(100vh - 9rem);
 }
 
+.modular {
+  position: fixed;
+  transition: 0.1s;
+  backdrop-filter: blur(9px) saturate(1);
+  min-height: 100%;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background: #0000008c !important;
+  overflow: hidden;
+  filter: opacity(1);
+}
+
+.hidden-modular {
+  backdrop-filter: blur(0) saturate(0);
+  pointer-events: none;
+  filter: opacity(0);
+}
+
+.close-modular {
+  cursor: pointer;
+  color: white;
+  font-size: 3rem;
+  text-align: right;
+  float: right;
+  padding-right: 0.8rem;
+  padding-top: 0.3rem;
+  font-family: "Archivo";
+}
+
+.modular-image-container {
+  height: 100vh;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 1.5rem 0rem;
+}
+
+.modular-image {
+  cursor: pointer;
+}
+
 button {
   font-family: "Archivo", sans-serif;
 }

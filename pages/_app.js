@@ -29,7 +29,6 @@ function MyApp({ Component, pageProps }) {
         <meta property="og:locale" content="en_GB" />
         <meta property="og:site_name" content="Authxrs"/>
         <meta property="og:image" content="https://cms.amodioflorencia.com/wp-content/uploads/2021/11/LOGO-3D-FINAL-1.png" itemProp="image" />
-        <html lang="en-US" />
       </Head>
       {DOMloading ?
       <div></div>
