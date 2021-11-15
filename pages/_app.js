@@ -24,10 +24,10 @@ function MyApp({ Component, pageProps }) {
         <link rel="dns-prefetch" href="https://cms.amodioflorencia.com/" />
         <link rel="preconnect" href="https://cms.amodioflorencia.com/" />
         <meta name="description" content="Florencia Amodio is an artist & graphic designer based in Buenos Aires, Argentina."></meta>
-        <meta property="og:title" content="AMODIOFLORI - art+design"/>
+        <meta property="og:title" content="AMODIOFLORI / art+design"/>
         <meta property="og:url" content="https://www.amodioflorencia.com/"/>
         <meta property="og:locale" content="en_GB" />
-        <meta property="og:site_name" content="Authxrs"/>
+        <meta property="og:site_name" content="Amodioflorencia.com"/>
         <meta property="og:image" content="https://cms.amodioflorencia.com/wp-content/uploads/2021/11/LOGO-3D-FINAL-1.png" itemProp="image" />
       </Head>
       {DOMloading ?
