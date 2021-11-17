@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }) {
         <meta property="og:url" content="https://www.amodioflorencia.com/"/>
         <meta property="og:locale" content="en_GB" />
         <meta property="og:site_name" content="Amodioflorencia.com"/>
-        <meta property="og:image" content="https://cms.amodioflorencia.com/wp-content/uploads/2021/11/LOGO-3D-FINAL-1.png" itemProp="image" />
+        <meta property="og:image" content='../images/og-image_thumbnail.jpg' itemProp="image" />
       </Head>
       {DOMloading ?
       <div></div>
