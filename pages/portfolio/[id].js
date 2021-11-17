@@ -63,7 +63,7 @@ function Portfolio() {
         setModularON(true)
         setImageInModular(e.target.src)
     }
-    // Retruning wordpress data into HTML using javascript
+    // Retruning wordpress data into HTML using javascript //
     return (
         <>
                 <div className={`loader-container ${(isFetching && !imgLoaded) ? null : 'hidden'}`}>
