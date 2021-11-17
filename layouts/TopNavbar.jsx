@@ -29,13 +29,13 @@ function TopNavbar() {
         <div className="top-navbar">
             <nav ref={el} className="top-navbar-container">
                 <Link scroll={false} href="/about">
-                    <a className={`${pathname == "/about" ? 'active' : null} fade-in`}>ABOUT</a>
+                    <a className={`${pathname == "/about" ? 'active' : null} fade-in`}>about</a>
                 </Link>
                 <Link scroll={false} href="/contact" className={`sub-categories ${pathname == "/contact" ? 'active' : null}`}>
-                    <a className={`${pathname == "/contact" ? 'active' : null} fade-in`}>CONTACT</a>
+                    <a className={`${pathname == "/contact" ? 'active' : null} fade-in`}>contact</a>
                 </Link>
                 <Link href="/nft">
-                    <a className={`${pathname == "/nft" ? 'active' : null} fade-in`}>NFT</a>
+                    <a className={`${pathname == "/nft" ? 'active' : null} fade-in`}>nft</a>
                 </Link>
             </nav>
         </div>

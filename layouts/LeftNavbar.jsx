@@ -32,12 +32,12 @@ function LeftNavbar({children}) {
     return(
         <>
             <div ref={el} className="left-navbar">
-                <CategoryLink categoryName="GRAPHIC DESIGN" categoryId="graphic-design" handleSubCategoryClick={handleSubCategoryClick} handleCategoryClick={handleCategoryClick} />
-                <SubcategoriesPanel categoryName="GRAPHIC DESIGN" categoryId="graphic-design" handleSubCategoryClick={handleSubCategoryClick} categorySelected={categorySelected} />
-                <CategoryLink categoryName="ART & EXHIBITIONS" categoryId="art-and-exhibition" handleSubCategoryClick={handleSubCategoryClick} cat handleCategoryClick={handleCategoryClick} />
-                <SubcategoriesPanel categoryName="ART & EXHIBITIONS" categoryId="art-and-exhibition" handleSubCategoryClick={handleSubCategoryClick} cat categorySelected={categorySelected} />
-                <CategoryLink categoryName="MERCH" categoryId="merch" handleSubCategoryClick={handleSubCategoryClick} handleCategoryClick={handleCategoryClick} />
-                <SubcategoriesPanel categoryName="MERCH" categoryId="merch" handleSubCategoryClick={handleSubCategoryClick} categorySelected={categorySelected} />
+                <CategoryLink categoryName="graphic design" categoryId="graphic-design" handleSubCategoryClick={handleSubCategoryClick} handleCategoryClick={handleCategoryClick} />
+                <SubcategoriesPanel categoryName="graphic design" categoryId="graphic-design" handleSubCategoryClick={handleSubCategoryClick} categorySelected={categorySelected} />
+                <CategoryLink categoryName="art & exhibitions" categoryId="art-and-exhibition" handleSubCategoryClick={handleSubCategoryClick} cat handleCategoryClick={handleCategoryClick} />
+                <SubcategoriesPanel categoryName="art & exhibitions" categoryId="art-and-exhibition" handleSubCategoryClick={handleSubCategoryClick} cat categorySelected={categorySelected} />
+                <CategoryLink categoryName="merch" categoryId="merch" handleSubCategoryClick={handleSubCategoryClick} handleCategoryClick={handleCategoryClick} />
+                <SubcategoriesPanel categoryName="merch" categoryId="merch" handleSubCategoryClick={handleSubCategoryClick} categorySelected={categorySelected} />
             </div>
             {children}
         </>
