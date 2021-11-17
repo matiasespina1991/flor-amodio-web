@@ -157,7 +157,7 @@ main div {
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   letter-spacing: 0.02rem;
   line-height: 3rem;
   min-width: max-content;
@@ -172,7 +172,7 @@ main div {
 }
 
 .lower-panel.isExpanded {
-  max-height: 9rem;
+  max-height: 9.5rem;
 }
 
 .lower-panel.isExpanded a {
