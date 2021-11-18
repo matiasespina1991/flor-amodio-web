@@ -14,8 +14,8 @@ function SubcategoriesPanel({categorySelected, categoryId, handleSubCategoryClic
         },
         {
             "parentCategory": "graphic-design",
-            "subcategory": "brands & logos",
-            "id": "brands-and-logos"
+            "subcategory": "indentity",
+            "id": "indentity"
         },
         {
             "parentCategory": "graphic-design",
