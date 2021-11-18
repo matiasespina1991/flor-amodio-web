@@ -25,7 +25,6 @@ function Portfolio() {
             .then(wordpressApi => {  
                 const json = [wordpressApi.data] 
                 setJSON_data(json[0])
-                console.log(json)
                 setIsFetching(false)
             })  
             .catch(err => {  
@@ -76,6 +75,7 @@ function Portfolio() {
                             ==
                             pathname
                         ){
+                            console.log(wp_item)
                             return (
                                 <div key={key} className="portfolio-img-caption-wrapper fade-in">
                                     <div className="portfolio-img-container">
