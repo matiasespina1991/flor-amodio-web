@@ -3,7 +3,6 @@ import { useEffect, useState, useRef, useLayoutEffect } from 'react'
 import CMS_PATH from '../../components/CMS_PATH'
 import { gsap } from 'gsap'
 import axios from 'axios'
-// import Image from 'next/image'
 
 function Portfolio() {
 
@@ -75,7 +74,6 @@ function Portfolio() {
                             ==
                             pathname
                         ){
-                            console.log(wp_item)
                             return (
                                 <div key={key} className="portfolio-img-caption-wrapper fade-in">
                                     <div className="portfolio-img-container">
