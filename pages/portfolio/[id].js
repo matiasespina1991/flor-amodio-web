@@ -23,7 +23,6 @@ function Portfolio() {
         const getData = async () => {  
             await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?_embed`)  
             .then(wordpressApi => {  
-                console.log(wordpressApi) 
                 const json = [wordpressApi.data] 
                 setJSON_data(json[0])
                 console.log(json)
