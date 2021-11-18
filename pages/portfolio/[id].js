@@ -31,7 +31,7 @@ function Portfolio() {
             });  
         }  
         getData()  
-    }, [])
+    }, [pathname])
 
     // Query selector to target HTML element for GSAP effects
     const parentContainer = useRef()
@@ -50,7 +50,7 @@ function Portfolio() {
             stagger: 0.15,
         });
         // GSAP effect triggered by changes in the pathname
-    }, [pathname])
+    }, [])
 
     const imageIsLoaded = () => {
         setImgLoaded(true)

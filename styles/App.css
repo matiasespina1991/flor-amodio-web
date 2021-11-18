@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap"); */
 
 html {
   min-height: 53rem;
@@ -248,11 +248,6 @@ main div {
   font-size: 0.85rem;
 }
 
-.main-content p,
-.main-content a {
-  word-break: break-all;
-}
-
 .loader-container {
   display: flex;
   width: 100%;
@@ -346,6 +341,7 @@ main div {
   }
   .left-link {
     line-height: 2.7rem;
+    font-size: 1.1rem;
   }
   .lower-panel {
     width: 21rem;
@@ -384,6 +380,7 @@ main div {
   }
   .main-content {
     padding: 0 1.3rem;
+    padding-top: 1rem;
   }
   .about-p,
   .contact-p,
