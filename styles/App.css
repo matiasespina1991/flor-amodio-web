@@ -317,6 +317,7 @@ main div {
   }
   .flower-menu-container {
     display: flex;
+    cursor: pointer;
   }
   .flower-menu-icon {
     display: block;
@@ -345,6 +346,9 @@ main div {
   }
   .left-link {
     line-height: 2.7rem;
+  }
+  .lower-panel {
+    width: 21rem;
   }
   .sub-categories-container div:nth-child(4) {
     margin-right: unset;
