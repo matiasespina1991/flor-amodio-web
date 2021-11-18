@@ -4,16 +4,23 @@ import Header from '../layouts/Header'
 import TopNavbar from '../layouts/TopNavbar'
 import LeftNavbar from '../layouts/LeftNavbar';
 import MainContent from '../layouts/MainContent'
+import FlowerMenuIcon from '../components/FlowerMenuIcon';
+import ResponsiveNavbar from '../layouts/ResponsiveNavbar'
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
 
 function MyApp({ Component, pageProps }) {
 
   const [ DOMloading, setDOMloading ] = useState(true)
+  const [ responsiveMenuIsExpanded, setResponsiveMenuIsExpanded ] = useState(false)
 
   useEffect(() => {
     setDOMloading(false)
   }, [])
+
+  const handleFlowerIconOnClick = () => {
+    setResponsiveMenuIsExpanded(prevSate => !prevSate)
+  }
 
   return (
     <>
@@ -37,12 +44,16 @@ function MyApp({ Component, pageProps }) {
       <Header/>
       <div className="body-wrapper">
         <LeftNavbar />
-          <div className="main-content-topnav-wrapper">
-            <TopNavbar />
-            <MainContent>
-              <Component {...pageProps} />
-            </MainContent>
+        <div className="main-content-topnav-wrapper">
+          <TopNavbar />
+          <div className="responsive-navbar-container">
+            <FlowerMenuIcon responsiveMenuIsExpanded={responsiveMenuIsExpanded} handleFlowerIconOnClick={handleFlowerIconOnClick} />
+            <ResponsiveNavbar responsiveMenuIsExpanded={responsiveMenuIsExpanded}/>
           </div>
+          <MainContent>
+            <Component {...pageProps} />
+          </MainContent>
+        </div>
       </div>
       </>
       }
