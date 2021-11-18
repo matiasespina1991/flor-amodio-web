@@ -9,8 +9,8 @@ function SubcategoriesPanel({categorySelected, categoryId, handleSubCategoryClic
     const subcategoryData = [
         {
             "parentCategory": "graphic-design",
-            "subcategory": "cover artwork",
-            "id": "cover-artwork"
+            "subcategory": "cover art",
+            "id": "cover-art"
         },
         {
             "parentCategory": "graphic-design",
