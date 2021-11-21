@@ -31,7 +31,7 @@ function Portfolio() {
             });  
         }  
         getData()  
-    }, [pathname])
+    }, [])
 
     // Query selector to target HTML element for GSAP effects
     const parentContainer = useRef()
