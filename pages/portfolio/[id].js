@@ -50,7 +50,7 @@ function Portfolio() {
             stagger: 0.15,
         });
         // GSAP effect triggered by changes in the pathname
-    }, [])
+    }, [querySel])
 
     const imageIsLoaded = () => {
         setImgLoaded(true)
