@@ -15,11 +15,13 @@ export default function Home() {
         // Browser path (ex. "/contact", "/about")
         const router = useRouter()
         const pathname = router.query.id
+
+        const categoryNumber = 125
     
         // Fetch from wordpress API
         useEffect(() => {     
             const getData = async () => {  
-                await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?_embed`)  
+                await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?per_page=99`)  
                 .then(wordpressApi => {  
                     const json = [wordpressApi.data] 
                     setJSON_data(json[0])
@@ -69,9 +71,7 @@ export default function Home() {
                     <div ref={parentContainer} className="portfolio-area-container">
                         {JSON_data.map((wp_item, key) => {
                             if(
-                                wp_item._embedded["wp:term"][0][0].slug
-                                ==
-                                "featured"
+                                wp_item.categories.includes(categoryNumber)
                             ){
                                 return (
                                     <div key={key} className="portfolio-img-caption-wrapper fade-in">

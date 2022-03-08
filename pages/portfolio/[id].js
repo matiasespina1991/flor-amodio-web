@@ -17,13 +17,17 @@ function Portfolio() {
     const router = useRouter()
     const pathname = router.query.id
 
+    const categoryNumber = pathname == "featured" && 125 || pathname == "cover-art" && 32 || pathname == "identity" && 35 || pathname == "video-titles" && 38 || pathname == "posters-and-flyers" && 41 || pathname == "merch-graphic-design" && 80 || pathname == "demete" && 44 || pathname == "merch-shop-now" && 83 
+
     // Fetch from wordpress API
     useEffect(() => {     
         const getData = async () => {  
-            await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?_embed`)  
+            await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?per_page=99`)  
+            // await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?_embed`)  
             .then(wordpressApi => {  
                 const json = [wordpressApi.data] 
                 setJSON_data(json[0])
+                console.log(JSON_data)
                 setIsFetching(false)
             })  
             .catch(err => {  
@@ -70,15 +74,12 @@ function Portfolio() {
                 <div ref={parentContainer} className="portfolio-area-container">
                     {JSON_data.map((wp_item, key) => {
                         if(
-                            wp_item._embedded["wp:term"][0][0].slug
-                            ==
-                            pathname
+                            wp_item.categories.includes(categoryNumber)
                         ){
                             return (
                                 <div key={key} className="portfolio-img-caption-wrapper fade-in">
                                     <div className="portfolio-img-container">
                                         <img onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={wp_item.featured_media_src_url} alt="" />
-                                        {/* <Image onLoadingComplete={imageIsLoaded} src={wp_item.featured_media_src_url} alt="" layout="fill" objectFit="contain" quality="100" />     */}
                                     </div>
                                     {imgLoaded ? <div className="image-caption" dangerouslySetInnerHTML={{__html: wp_item.content.rendered}} /> : ""}
                                 </div>
