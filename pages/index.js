@@ -17,15 +17,16 @@ export default function Home() {
         const pathname = router.query.id
 
         const categoryNumber = 125
-    
+        http://localhost:3000/wp-json/gallery_plugin/v1/post/280
         // Fetch from wordpress API
         useEffect(() => {     
             const getData = async () => {  
-                await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?per_page=99`)  
+                await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?per_page=99&acf_format=standard`)  
                 .then(wordpressApi => {  
                     const json = [wordpressApi.data] 
                     setJSON_data(json[0])
                     setIsFetching(false)
+                    // console.log(json[0])
                 })  
                 .catch(err => {  
                 console.log(err)  
@@ -33,7 +34,8 @@ export default function Home() {
             }  
             getData()  
         }, [])
-    
+
+
         // Query selector to target HTML element for GSAP effects
         const parentContainer = useRef()
         const querySel = gsap.utils.selector(parentContainer)
