@@ -86,7 +86,7 @@ export default function Home() {
         function Item(image) {
             return (
                 <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-                    <img onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={image.item} alt="" />
+                    <img style={{ objectFit: 'contain', height: '100%', width: '100%' }} onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={image.item} alt="" />
                 </div>
             )
         }
@@ -103,33 +103,34 @@ export default function Home() {
                             
                             if(itemIsAGallery(wp_item)){
                                 const gallery = wp_item.acf
+                                const imagesArray = [wp_item.featured_media_src_url]
 
-                                console.log(wp_item.featured_media_src_url)
+                                Object.entries(gallery).forEach((val,index) => {
+                                    if(val[1] != false){
+                                        imagesArray.push(val[1])
+                                    }
+                                })
+                    
                                 return(
                                     
                                     <div key={key} className="portfolio-img-caption-wrapper fade-in">
                                         <div className="portfolio-img-container">
                                             <Carousel 
                                             sx={{ display: 'flex'}}
-                                            autoPlay={false} animation="slide" height={420} width={420}
-                                             indicators={false} 
+                                            autoPlay={false} 
+                                            animation="slide" 
+                                            swipe={true}
+                                            height={420} 
+                                            width={420}
+                                            indicators={false} 
                                             navButtonsAlwaysVisible={true}>
-                                            {
-                                                wp_item.featured_media_src_url &&  <Item item={wp_item.featured_media_src_url} /> 
-                                            }
-                                            {
-                                                gallery.second_featured_image != false && <Item item={gallery.second_featured_image} /> 
-                                            }
-                                            {
-                                                gallery.third_featured_image != false && <Item item={gallery.third_featured_image} /> 
-                                            }
-                                            {/* {
-                                                gallery.fourth_featured_image != false && <Item item={gallery.fourth_featured_image} /> 
-                                            }
-                                            {
-                                                gallery.fifth_featured_image != false && <Item item={gallery.fifth_featured_image} /> 
-                                            } */}
+                                                {
+                                                    imagesArray.map((image, key) => {
+                                                        return <Item item={image} key={key} />
+                                                    })
+                                                }
                                             </Carousel>
+                                            
                                             <div className="image-caption" dangerouslySetInnerHTML={{__html: wp_item.content.rendered}} />
                                         </div>
                                     </div>
