@@ -4,7 +4,6 @@ import CMS_PATH from '../components/CMS_PATH'
 import { gsap } from 'gsap'
 import axios from 'axios'
 import Carousel from 'react-material-ui-carousel'
-import { Paper, Button } from '@mui/material'
 
 export default function Home() {
     // React state
@@ -76,14 +75,12 @@ export default function Home() {
                 gallery.fifth_featured_image
             ){
                 return true
-             } else {
+            } else {
                 return false
-             }
+            }
         }
 
-
-
-        function Item(image) {
+        function CarouselItem(image) {
             return (
                 <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
                     <img style={{ objectFit: 'contain', height: '100%', width: '100%' }} onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={image.item} alt="" />
@@ -126,7 +123,7 @@ export default function Home() {
                                             navButtonsAlwaysVisible={true}>
                                                 {
                                                     imagesArray.map((image, key) => {
-                                                        return <Item item={image} key={key} />
+                                                        return <CarouselItem item={image} key={key} />
                                                     })
                                                 }
                                             </Carousel>

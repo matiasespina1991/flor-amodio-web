@@ -3,7 +3,7 @@ import { useEffect, useState, useRef, useLayoutEffect } from 'react'
 import CMS_PATH from '../../components/CMS_PATH'
 import { gsap } from 'gsap'
 import axios from 'axios'
-import Image from "next/image"
+import Carousel from 'react-material-ui-carousel'
 
 function Portfolio() {
 
@@ -23,12 +23,10 @@ function Portfolio() {
     // Fetch from wordpress API
     useEffect(() => {     
         const getData = async () => {  
-            await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?per_page=99`)  
-            // await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?_embed`)  
+            await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?acf_format=standard&?per_page=99`)  
             .then(wordpressApi => {  
                 const json = [wordpressApi.data] 
                 setJSON_data(json[0])
-                console.log(JSON_data)
                 setIsFetching(false)
             })  
             .catch(err => {  
@@ -65,6 +63,30 @@ function Portfolio() {
         setModularON(true)
         setImageInModular(e.target.src)
     }
+
+    const itemIsAGallery = (wp_item) => {
+        const gallery = wp_item.acf
+
+        if( 
+            gallery.second_featured_image || 
+            gallery.third_featured_image || 
+            gallery.fourth_featured_image || 
+            gallery.fifth_featured_image
+        ){
+            return true
+        } else {
+            return false
+        }
+    }
+
+    function CarouselItem(image) {
+        return (
+            <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+                <img style={{ objectFit: 'contain', height: '100%', width: '100%' }} onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={image.item} alt="" />
+            </div>
+        )
+    }
+
     // Retruning wordpress data into HTML using javascript //
     return (
         <>
@@ -74,7 +96,46 @@ function Portfolio() {
                 <>
                 <div ref={parentContainer} className="portfolio-area-container">
                     {JSON_data.map((wp_item, key) => {
-                       
+                        
+                        if(itemIsAGallery(wp_item) &&  wp_item.categories.includes(categoryNumber)){
+
+                            console.log(wp_item)
+                            const gallery = wp_item.acf
+                            const imagesArray = [wp_item.featured_media_src_url]
+
+                            Object.entries(gallery).forEach((val,index) => {
+                                if(val[1] != false){
+                                    imagesArray.push(val[1])
+                                }
+                            })
+                
+                            return(
+                                
+                                <div key={key} className="portfolio-img-caption-wrapper fade-in">
+                                    <div className="portfolio-img-container">
+                                        <Carousel 
+                                        sx={{ display: 'flex'}}
+                                        autoPlay={false} 
+                                        animation="slide" 
+                                        swipe={true}
+                                        height={420} 
+                                        width={420}
+                                        indicators={false} 
+                                        navButtonsAlwaysVisible={true}>
+                                            {
+                                                imagesArray.map((image, key) => {
+                                                    return <CarouselItem item={image} key={key} />
+                                                })
+                                            }
+                                        </Carousel>
+                                        
+                                        <div className="image-caption" dangerouslySetInnerHTML={{__html: wp_item.content.rendered}} />
+                                    </div>
+                                </div>
+                                
+                            )
+                        }
+
                         if(
                             wp_item.categories.includes(categoryNumber)
                         ){
