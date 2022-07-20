@@ -3,6 +3,7 @@ import { useEffect, useState, useRef, useLayoutEffect } from 'react'
 import CMS_PATH from '../../components/CMS_PATH'
 import { gsap } from 'gsap'
 import axios from 'axios'
+import Image from "next/image"
 
 function Portfolio() {
 
@@ -73,6 +74,7 @@ function Portfolio() {
                 <>
                 <div ref={parentContainer} className="portfolio-area-container">
                     {JSON_data.map((wp_item, key) => {
+                       
                         if(
                             wp_item.categories.includes(categoryNumber)
                         ){
@@ -80,6 +82,8 @@ function Portfolio() {
                                 <div key={key} className="portfolio-img-caption-wrapper fade-in">
                                     <div className="portfolio-img-container">
                                         <img onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={wp_item.featured_media_src_url} alt="" />
+
+                                        {/* <Image height={400} loading="lazy" width={400} onLoadingComplete={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={wp_item.featured_media_src_url} alt="" /> */}
                                     </div>
                                     {imgLoaded ? <div className="image-caption" dangerouslySetInnerHTML={{__html: wp_item.content.rendered}} /> : ""}
                                 </div>
