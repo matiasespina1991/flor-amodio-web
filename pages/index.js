@@ -85,9 +85,9 @@ export default function Home() {
 
         function Item(image) {
             return (
-                <>
+                <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
                     <img onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={image.item} alt="" />
-                </>
+                </div>
             )
         }
 
@@ -110,12 +110,12 @@ export default function Home() {
                                     <div key={key} className="portfolio-img-caption-wrapper fade-in">
                                         <div className="portfolio-img-container">
                                             <Carousel 
-                                            
+                                            sx={{ display: 'flex'}}
                                             autoPlay={false} animation="slide" height={420} width={420}
                                              indicators={false} 
                                             navButtonsAlwaysVisible={true}>
                                             {
-                                                wp_item.featured_media_src_url && <img onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={wp_item.featured_media_src_url} alt="" />
+                                                wp_item.featured_media_src_url &&  <Item item={wp_item.featured_media_src_url} /> 
                                             }
                                             {
                                                 gallery.second_featured_image != false && <Item item={gallery.second_featured_image} /> 
@@ -130,6 +130,7 @@ export default function Home() {
                                                 gallery.fifth_featured_image != false && <Item item={gallery.fifth_featured_image} /> 
                                             } */}
                                             </Carousel>
+                                            <div className="image-caption" dangerouslySetInnerHTML={{__html: wp_item.content.rendered}} />
                                         </div>
                                     </div>
                                     
