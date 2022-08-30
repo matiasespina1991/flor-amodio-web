@@ -26,7 +26,7 @@ export default function Home() {
                 .then(wordpressApi => {  
                     const json = [wordpressApi.data] 
                     setJSON_data(json[0])
-                    setIsFetching(false)
+                    // setIsFetching(false)
                     // console.log(json[0])
                 })  
                 .catch(err => {  
@@ -92,7 +92,7 @@ export default function Home() {
         return (
             <>
                     <div className={`loader-container ${(isFetching && !imgLoaded) ? null : 'hidden'}`}>
-                        <img style={{width: '100%', height: '100%'}} className="main-loader" src="https://thumbs.gfycat.com/OrganicMajorFallowdeer.webp" alt="" />
+                        <img style={{width: '100%', height: '100%'}} className="main-loader" src="/loading-logo/loading-flower.gif" alt="" />
                     </div>
                     <>
                     <div ref={parentContainer} className="portfolio-area-container">

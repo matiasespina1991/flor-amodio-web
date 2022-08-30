@@ -91,7 +91,7 @@ function Portfolio() {
     return (
         <>
                 <div className={`loader-container ${(isFetching && !imgLoaded) ? null : 'hidden'}`}>
-                    <img className="main-loader" src="https://thumbs.gfycat.com/OrganicMajorFallowdeer.webp" alt="" />
+                    <img className="main-loader" src="/loading-logo/loading-flower.gif" alt="" />
                 </div>
                 <>
                 <div ref={parentContainer} className="portfolio-area-container">
