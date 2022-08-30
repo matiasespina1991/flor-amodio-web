@@ -81,7 +81,7 @@ function Portfolio() {
 
     function CarouselItem(image) {
         return (
-            <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+            <div style={{ display: 'flex', alignItems: 'center', height: '100%', width: '100%' }}>
                 <img style={{ objectFit: 'contain', height: '100%', width: '100%' }} onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={image.item} alt="" />
             </div>
         )

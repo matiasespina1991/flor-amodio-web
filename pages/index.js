@@ -82,7 +82,7 @@ export default function Home() {
 
         function CarouselItem(image) {
             return (
-                <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+                <div style={{ display: 'flex', alignItems: 'center', height: '100%', width: '100%' }}>
                     <img style={{ objectFit: 'contain', height: '100%', width: '100%' }} onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={image.item} alt="" />
                 </div>
             )
@@ -98,7 +98,7 @@ export default function Home() {
                     <div ref={parentContainer} className="portfolio-area-container">
                         {JSON_data.map((wp_item, key) => {
                             
-                            if(itemIsAGallery(wp_item)){
+                            if(itemIsAGallery(wp_item) && wp_item.categories.includes(categoryNumber)){
                                 const gallery = wp_item.acf
                                 const imagesArray = [wp_item.featured_media_src_url]
 
