@@ -2,8 +2,9 @@ import Link from 'next/link';
 import { useLayoutEffect, useRef } from 'react';
 import { useRouter } from 'next/router'
 import { gsap } from 'gsap';
+import FlowerMenuIcon from '../components/FlowerMenuIcon';
 
-function TopNavbar() {
+function TopNavbar({handleFlowerIconOnClick, responsiveMenuIsExpanded}) {
 
     const router = useRouter()
     const pathname = router.pathname
@@ -24,9 +25,9 @@ function TopNavbar() {
             stagger: 0.35,
         });
     }, []);
-
     return(
         <div className="top-navbar">
+            <FlowerMenuIcon responsiveMenuIsExpanded={responsiveMenuIsExpanded} handleFlowerIconOnClick={handleFlowerIconOnClick} />
             <nav ref={el} className="top-navbar-container">
                 <Link scroll={false} href="/about">
                     <a className={`${pathname == "/about" ? 'active' : null} fade-in`}>about</a>

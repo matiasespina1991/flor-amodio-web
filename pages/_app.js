@@ -49,11 +49,11 @@ function MyApp({ Component, pageProps }) {
       <>
       <Header/>
       <div className="body-wrapper">
-        <LeftNavbar />
+        <LeftNavbar  />
         <div className="main-content-topnav-wrapper">
-          <TopNavbar />
+          <TopNavbar responsiveMenuIsExpanded={responsiveMenuIsExpanded} handleFlowerIconOnClick={handleFlowerIconOnClick} />
           <div className="responsive-navbar-container">
-            <FlowerMenuIcon responsiveMenuIsExpanded={responsiveMenuIsExpanded} handleFlowerIconOnClick={handleFlowerIconOnClick} />
+            {/* <FlowerMenuIcon responsiveMenuIsExpanded={responsiveMenuIsExpanded} handleFlowerIconOnClick={handleFlowerIconOnClick} /> */}
             <ResponsiveNavbar responsiveMenuIsExpanded={responsiveMenuIsExpanded}/>
           </div>
           <MainContent>

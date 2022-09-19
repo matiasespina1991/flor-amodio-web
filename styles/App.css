@@ -103,10 +103,11 @@ button {
 
 .top-navbar {
   height: 5rem;
-  margin-right: 1rem;
+  margin-right: 0.8rem;
+  margin-left: 0.8rem;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .top-navbar a {
@@ -150,6 +151,9 @@ main div {
 }
 
 .responsive-navbar-container {
+  overflow: hidden;
+
+
   display: none;
 }
 
@@ -376,7 +380,6 @@ main div {
   .top-navbar-container {
     display: flex;
     width: 16rem;
-    position: absolute;
   }
   .portfolio-area-container {
     padding: 1rem 0;
