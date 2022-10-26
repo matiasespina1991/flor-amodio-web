@@ -40,11 +40,6 @@ function Portfolio() {
     const parentContainer = useRef()
     const querySel = gsap.utils.selector(parentContainer)
 
-    useEffect(() => {
-        console.log(JSON_data)
-    },[JSON_data])
-
-
     // GSAP function
     useLayoutEffect(() => {
         gsap.fromTo(querySel(".fade-in"), {
@@ -86,6 +81,9 @@ function Portfolio() {
     function CarouselItem(image) {
         return (
             <div style={{ display: 'flex', alignItems: 'center', height: '100%', width: '100%' }}>
+                <div>
+
+                </div>
                 <img style={{ objectFit: 'contain', height: '100%', width: '100%' }} onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={image.item} alt="" />
             </div>
         )
@@ -94,8 +92,27 @@ function Portfolio() {
     // Retruning wordpress data into HTML using javascript //
     return (
         <>
-                <div className={`loader-container ${(isFetching && !imgLoaded) ? null : 'hidden'}`}>
-                    <img className="main-loader" src="/loading-logo/loading-flower.gif" alt="" />
+                <div 
+                    className={`
+                        loader-container 
+                        ${(isFetching && !imgLoaded) ? null : "hidden"}
+                    `}
+                    style={{ width: "100%", height: "100%" }}
+                >
+                    <div
+                        className="flower-loader-wrapper"
+                        style={{
+                            backgroundColor: 'white !important',
+                            width: '100%',
+                            height: '100%',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <img className="main-loader" src="/loading-logo/loading-flower.gif" alt="" />
+                    </div>
                 </div>
                 <>
                 <div ref={parentContainer} className="portfolio-area-container">

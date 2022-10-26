@@ -250,16 +250,22 @@ main div {
 
 .loader-container {
   opacity: 1;
-  position: absolute;
-  left: 9rem;
+  position: fixed;
+  /* left: 9rem; */
   transition: 2s;
   display: flex;
   user-select: none;
   pointer-events: none;
   width: 100%;
-  padding-top: 3rem;
+  /* padding-top: 3rem; */
   justify-content: center;
   z-index: 10;
+  background: #f9f9f9 !important;
+}
+
+.flower-loader-wrapper {
+  padding-right: 33rem;
+  padding-bottom: 14rem;
 }
 
 .hidden {
@@ -286,9 +292,14 @@ main div {
 
 @media (max-width: 760px) {
   .loader-container {
-    z-index: -1;
     left: 0 !important;
   }
+
+  .flower-loader-wrapper {
+    padding-right: 0rem;
+    padding-bottom: 13rem;
+  }
+
   .hidden {
     width: 0;
     opacity: 0 !important;
@@ -382,7 +393,7 @@ main div {
     width: 16rem;
   }
   .portfolio-area-container {
-    padding: 1rem 0;
+    padding: 2rem 0;
   }
   .portfolio-img-caption-wrapper {
     padding: 0.7rem 0rem;
@@ -397,7 +408,6 @@ main div {
   }
   .main-content {
     padding: 0 1.3rem;
-    padding-top: 1rem;
   }
   .about-p,
   .contact-p,
