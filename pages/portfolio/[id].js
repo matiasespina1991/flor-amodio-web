@@ -23,7 +23,7 @@ function Portfolio() {
     // Fetch from wordpress API
     useEffect(() => {     
         const getData = async () => {  
-            await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?per_page=100&?acf_format=standard&?filter[limit]=100`)  
+            await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?per_page=100&acf_format=standard&?filter[limit]=100`)  
             .then(wordpressApi => {  
                 const json = [wordpressApi.data] 
                 setJSON_data(json[0])
@@ -145,6 +145,7 @@ function Portfolio() {
                                         navButtonsAlwaysVisible={true}>
                                             {
                                                 imagesArray.map((image, key) => {
+                                                    console.log(image)
                                                     return <CarouselItem item={image} key={key} />
                                                 })
                                             }
