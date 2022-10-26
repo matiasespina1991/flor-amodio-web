@@ -91,8 +91,27 @@ export default function Home() {
         // Retruning wordpress data into HTML using javascript //
         return (
             <>
-                    <div className={`loader-container ${(isFetching && !imgLoaded) ? null : 'hidden'}`}>
-                        <img style={{width: '100%', height: '100%'}} className="main-loader" src="/loading-logo/loading-flower.gif" alt="" />
+                    <div 
+                        className={`
+                            loader-container 
+                            ${(isFetching && !imgLoaded) ? null : "hidden"}
+                        `}
+                        style={{ width: "100%", height: "100%" }}
+                    >
+                        <div
+                            className="flower-loader-wrapper"
+                            style={{
+                                backgroundColor: 'white !important',
+                                width: '100%',
+                                height: '100%',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignContent: 'center',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <img className="main-loader" src="/loading-logo/loading-flower.gif" alt="" />
+                        </div>
                     </div>
                     <>
                     <div ref={parentContainer} className="portfolio-area-container">
