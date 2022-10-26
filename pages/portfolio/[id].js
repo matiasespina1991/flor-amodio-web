@@ -23,7 +23,7 @@ function Portfolio() {
     // Fetch from wordpress API
     useEffect(() => {     
         const getData = async () => {  
-            await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?acf_format=standard&?per_page=99`)  
+            await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?per_page=100&?acf_format=standard&?filter[limit]=100`)  
             .then(wordpressApi => {  
                 const json = [wordpressApi.data] 
                 setJSON_data(json[0])
@@ -39,6 +39,10 @@ function Portfolio() {
     // Query selector to target HTML element for GSAP effects
     const parentContainer = useRef()
     const querySel = gsap.utils.selector(parentContainer)
+
+    useEffect(() => {
+        console.log(JSON_data)
+    },[JSON_data])
 
 
     // GSAP function
@@ -99,7 +103,7 @@ function Portfolio() {
                         
                         if(itemIsAGallery(wp_item) &&  wp_item.categories.includes(categoryNumber)){
 
-                            console.log(wp_item)
+                            // console.log(wp_item)
                             const gallery = wp_item.acf
                             const imagesArray = [wp_item.featured_media_src_url]
 
@@ -153,7 +157,7 @@ function Portfolio() {
                         }
                     })}
                 </div>
-                <div className={`modular ${modularON ? "" : 'hidden-modular'}`}>
+                <div className={`modular ${modularON ? "" : 'hidden-modular'}`} style={{zIndex: 8}}>
                     <div onClick={() => setModularON(false)} className="close-modular">X</div>
                     <div onClick={() => setModularON(false)} className="modular-image-container">
                         <img className="modular-image" src={imageInModular} alt="" />
