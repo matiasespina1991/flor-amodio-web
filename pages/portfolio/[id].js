@@ -13,6 +13,8 @@ function Portfolio() {
     const [ imgLoaded, setImgLoaded ] = useState(false)
     const [ modularON, setModularON ] = useState(false)
     const [ imageInModular, setImageInModular ] = useState('')
+    const [ moduleType, setModuleType ] = useState('')
+    const [ carouselInModular, setCarouselInModular ] = useState([])
 
     // Browser path (ex. "/contact", "/about")
     const router = useRouter()
@@ -61,7 +63,17 @@ function Portfolio() {
     const handleOnClickImage = (e) => {
         setModularON(true)
         setImageInModular(e.target.src)
+        setModuleType('image')
     }
+
+
+    const handleOnClickCarousel = (imagesArray) => {
+        setModularON(true)
+        setCarouselInModular(imagesArray)
+        setModuleType('carousel')
+    }
+
+
 
     const itemIsAGallery = (wp_item) => {
         const gallery = wp_item.acf
@@ -78,13 +90,31 @@ function Portfolio() {
         }
     }
 
-    function CarouselItem(image) {
+
+
+    function CarouselItem(props) {
         return (
             <div style={{ display: 'flex', alignItems: 'center', height: '100%', width: '100%' }}>
                 <div>
 
                 </div>
-                <img style={{ objectFit: 'contain', height: '100%', width: '100%' }} onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={image.item} alt="" />
+                <img style={{ objectFit: 'contain', height: '100%', width: '100%' }} 
+                onLoad={() => imageIsLoaded()} 
+                onClick={() => handleOnClickCarousel(props.allImages)} 
+                src={props.item} 
+                alt="" />
+            </div>
+        )
+    }
+
+
+    function CarouselItemFromModular(props) {
+        return (
+            <div style={{ display: 'flex', alignItems: 'center', height: '100%', width: '100%' }}>
+                <img style={{ objectFit: 'contain', height: '100%', width: '100%' }} 
+                onLoad={() => imageIsLoaded()} 
+                src={props.item} 
+                alt="" />
             </div>
         )
     }
@@ -111,7 +141,7 @@ function Portfolio() {
                             alignItems: 'center',
                         }}
                     >
-                        <img className="main-loader" src="/loading-logo/loading-flower.gif" alt="" />
+                        <img className="main-loader" src="/loading-logo/loading-flower.gif" alt="" style={{ left: '1rem' }} />
                     </div>
                 </div>
                 <>
@@ -145,8 +175,7 @@ function Portfolio() {
                                         navButtonsAlwaysVisible={true}>
                                             {
                                                 imagesArray.map((image, key) => {
-                                                    console.log(image)
-                                                    return <CarouselItem item={image} key={key} />
+                                                    return <CarouselItem item={image} key={key} allImages={imagesArray} />
                                                 })
                                             }
                                         </Carousel>
@@ -175,11 +204,38 @@ function Portfolio() {
                         }
                     })}
                 </div>
-                <div className={`modular ${modularON ? "" : 'hidden-modular'}`} style={{zIndex: 8}}>
+                <div className={`modular ${modularON ? "" : 'hidden-modular'}`} onClick={() => setModularON(false)} style={{zIndex: 8, overflow: 'hidden', height: '100%'}}>
                     <div onClick={() => setModularON(false)} className="close-modular">X</div>
-                    <div onClick={() => setModularON(false)} className="modular-image-container">
-                        <img className="modular-image" src={imageInModular} alt="" />
-                    </div>
+
+                    {
+                        moduleType == 'image' &&
+                        <div onClick={() => setModularON(false)} className="modular-image-container">
+                            <img className="modular-image" src={imageInModular} alt="" />
+                        </div>
+                    }
+
+                    {
+                        ( moduleType == 'carousel' && carouselInModular.length != 0 )
+                        &&
+                        <div style={{position: 'relative', height: '100%'}}>
+                            <Carousel 
+                                sx={{ display: 'flex', height: '100%'}}
+                                autoPlay={false} 
+                                animation="slide" 
+                                className='modular-carousel'
+                                swipe={true}
+                                indicators={false} 
+                                navButtonsAlwaysVisible={true}
+                            >
+                                {
+                                    carouselInModular.map((image, key) => {
+                                        return <CarouselItemFromModular item={image} key={key} />
+                                    })
+                                }
+                            </Carousel>
+                        </div>
+                    }
+                    
                 </div>
                 </>
         </>

@@ -110,7 +110,7 @@ export default function Home() {
                                 alignItems: 'center',
                             }}
                         >
-                            <img className="main-loader" src="/loading-logo/loading-flower.gif" alt="" />
+                            <img className="main-loader" src="/loading-logo/loading-flower.gif" alt="" style={{ left: '1rem' }} />
                         </div>
                     </div>
                     <>

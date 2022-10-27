@@ -25,6 +25,10 @@ main {
   overflow: scroll;
 }
 
+img {
+  transform: translateZ(0) scale(.999999);
+}
+
 .modular {
   position: fixed;
   transition: 0.1s;
@@ -49,10 +53,21 @@ main {
   color: white;
   font-size: 3rem;
   text-align: right;
-  float: right;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 9;
   padding-right: 0.8rem;
   padding-top: 0.3rem;
   font-family: "Archivo";
+}
+
+.modular-carousel>div>div>div>div>div {
+  height: 100%;
+}
+
+.modular-carousel>div {
+  height: 100% !important;
 }
 
 .modular-image-container {
@@ -335,7 +350,7 @@ main div {
     overflow: hidden;
   }
   .responsive-navbar.isExpanded {
-    height: 11rem;
+    height: 12rem;
     overflow: visible;
   }
   .flower-menu-container {
