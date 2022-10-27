@@ -117,7 +117,7 @@ button {
 }
 
 .top-navbar {
-  height: 5rem;
+  height: 4rem;
   margin-right: 0.8rem;
   margin-left: 0.8rem;
   display: flex;
@@ -174,8 +174,8 @@ main div {
 
 .left-navbar {
   float: left;
-  padding: 9rem 4rem;
-  width: 27rem;
+  padding: 7rem 4rem;
+  width: 23rem;
 }
 
 .left-link {
@@ -238,7 +238,7 @@ main div {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: space-evenly;
-  padding-right: 1rem;
+  padding-right: 2rem;
 }
 
 .portfolio-img-caption-wrapper {
