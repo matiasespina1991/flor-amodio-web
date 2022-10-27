@@ -71,8 +71,12 @@ export default function Home() {
             setModularON(true)
             setCarouselInModular(imagesArray)
             setModuleType('carousel')
-
         }    
+
+        function handleCloseModular() {
+            setModularON(false)
+            setCarouselInModular([])
+        }
 
         const itemIsAGallery = (wp_item) => {
             const gallery = wp_item.acf
@@ -197,10 +201,10 @@ export default function Home() {
                         })}
                     </div>
                     <div className={`modular ${modularON ? "" : 'hidden-modular'}`} style={{zIndex: 8, overflow: 'hidden', height: '100%'}}>
-                        <div onClick={() => setModularON(false)} className="close-modular">X</div>
+                        <div onClick={() => handleCloseModular()} className="close-modular">X</div>
                         {
                         moduleType == 'image' &&
-                        <div onClick={() => setModularON(false)} className="modular-image-container">
+                        <div onClick={() => handleCloseModular()} className="modular-image-container">
                             <img className="modular-image" src={imageInModular} alt="" />
                         </div>
                     }
@@ -208,7 +212,7 @@ export default function Home() {
                     {
                         ( moduleType == 'carousel' && carouselInModular.length != 0 )
                         &&
-                        <div style={{position: 'relative', height: '100%'}}>
+                        <div onClick={() => handleCloseModular()} style={{position: 'relative', height: '100%'}}>
                             <Carousel 
                                 sx={{ display: 'flex', height: '100%'}}
                                 autoPlay={false} 

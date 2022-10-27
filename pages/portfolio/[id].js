@@ -73,7 +73,10 @@ function Portfolio() {
         setModuleType('carousel')
     }
 
-
+    function handleCloseModular() {
+        setModularON(false)
+        setCarouselInModular([])
+    }
 
     const itemIsAGallery = (wp_item) => {
         const gallery = wp_item.acf
@@ -203,7 +206,7 @@ function Portfolio() {
                     })}
                 </div>
                 <div className={`modular ${modularON ? "" : 'hidden-modular'}`} onClick={() => setModularON(false)} style={{zIndex: 8, overflow: 'hidden', height: '100%'}}>
-                    <div onClick={() => setModularON(false)} className="close-modular">X</div>
+                    <div onClick={() => handleCloseModular()} className="close-modular">X</div>
 
                     {
                         moduleType == 'image' &&
