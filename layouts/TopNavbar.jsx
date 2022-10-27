@@ -35,9 +35,9 @@ function TopNavbar({handleFlowerIconOnClick, responsiveMenuIsExpanded}) {
                 <Link scroll={false} href="/contact" className={`sub-categories ${pathname == "/contact" ? 'active' : null}`}>
                     <a className={`${pathname == "/contact" ? 'active' : null} fade-in`}>contact</a>
                 </Link>
-                <Link href="/nft">
+                {/* <Link href="/nft">
                     <a className={`${pathname == "/nft" ? 'active' : null} fade-in`}>nft</a>
-                </Link>
+                </Link> */}
             </nav>
         </div>
     )

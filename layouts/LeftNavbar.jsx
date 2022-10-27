@@ -36,8 +36,8 @@ function LeftNavbar({children}) {
                 <SubcategoriesPanel categoryName="graphic design" categoryId="graphic-design" handleSubCategoryClick={handleSubCategoryClick} categorySelected={categorySelected} />
                 <CategoryLink categoryName="art & exhibitions" categoryId="art-and-exhibition" handleSubCategoryClick={handleSubCategoryClick} cat handleCategoryClick={handleCategoryClick} />
                 <SubcategoriesPanel categoryName="art & exhibitions" categoryId="art-and-exhibition" handleSubCategoryClick={handleSubCategoryClick} cat categorySelected={categorySelected} />
-                <CategoryLink categoryName="merch" categoryId="merch" handleSubCategoryClick={handleSubCategoryClick} handleCategoryClick={handleCategoryClick} />
-                <SubcategoriesPanel categoryName="merch" categoryId="merch" handleSubCategoryClick={handleSubCategoryClick} categorySelected={categorySelected} />
+                {/* <CategoryLink categoryName="merch" categoryId="merch" handleSubCategoryClick={handleSubCategoryClick} handleCategoryClick={handleCategoryClick} /> */}
+                {/* <SubcategoriesPanel categoryName="merch" categoryId="merch" handleSubCategoryClick={handleSubCategoryClick} categorySelected={categorySelected} /> */}
             </div>
             {children}
         </>

@@ -95,14 +95,13 @@ function Portfolio() {
     function CarouselItem(props) {
         return (
             <div style={{ display: 'flex', alignItems: 'center', height: '100%', width: '100%' }}>
-                <div>
-
-                </div>
-                <img style={{ objectFit: 'contain', height: '100%', width: '100%' }} 
-                onLoad={() => imageIsLoaded()} 
-                onClick={() => handleOnClickCarousel(props.allImages)} 
-                src={props.item} 
-                alt="" />
+                <img 
+                    style={{ objectFit: 'contain', height: '100%', width: '100%' }} 
+                    onLoad={() => imageIsLoaded()} 
+                    onClick={() => handleOnClickCarousel(props.allImages)} 
+                    src={props.item} 
+                    alt="" 
+                />
             </div>
         )
     }
@@ -150,7 +149,6 @@ function Portfolio() {
                         
                         if(itemIsAGallery(wp_item) &&  wp_item.categories.includes(categoryNumber)){
 
-                            // console.log(wp_item)
                             const gallery = wp_item.acf
                             const imagesArray = [wp_item.featured_media_src_url]
 
