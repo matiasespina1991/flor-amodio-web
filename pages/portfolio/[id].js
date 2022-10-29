@@ -17,6 +17,7 @@ function Portfolio() {
     const [ moduleType, setModuleType ] = useState('')
     const [ carouselInModular, setCarouselInModular ] = useState([])
     const [ hideLoadingFlower, setHideLoadingFlower ] = useState(false)
+    const [ loadedImages, setLoadedImages ] = useState([])
 
     // Browser path (ex. "/contact", "/about")
     const router = useRouter()
@@ -181,7 +182,7 @@ function Portfolio() {
                                 
                                 <div key={key} className="portfolio-img-caption-wrapper fade-in">
                                     <div className="portfolio-img-container">
-                                        <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '45%' }} />
+                                        {/* <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '45%' }} /> */}
                                         <Carousel 
                                         sx={{ display: 'flex'}}
                                         autoPlay={false} 
@@ -210,9 +211,23 @@ function Portfolio() {
                         ){
                             return (
                                 <div key={key} className="portfolio-img-caption-wrapper fade-in">
-                                    <div className="portfolio-img-container">
-                                        <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '45%' }} />
-                                        <img onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} loading='lazy' src={wp_item.featured_media_src_url} alt="" />
+                                    <div className={`portfolio-img-container ${!loadedImages.includes(key) ? 'placeholder-background' : null}`}>
+                                        {
+                                            !loadedImages.includes(key)
+                                            &&
+                                            <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '45%' }} />
+                                        }
+                                        <img 
+                                         onLoad={
+                                            () => {
+                                                if(key){
+                                                    setLoadedImages((imagesKeys) => [...imagesKeys, key])
+                                                }
+                                            }    
+                                        } 
+                                        onClick={(e) => handleOnClickImage(e)} 
+                                        loading='lazy' 
+                                        src={wp_item.featured_media_src_url} alt="" />
 
                                         {/* <Image height={400} loading="lazy" width={400} onLoadingComplete={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={wp_item.featured_media_src_url} alt="" /> */}
                                     </div>

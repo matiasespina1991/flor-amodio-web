@@ -10,12 +10,12 @@ export default function Home() {
     // React state
     const [ JSON_data, setJSON_data ] = useState([])
     const [ isFetching, setIsFetching ] = useState(true)
-    const [ imgLoaded, setImgLoaded ] = useState(false)
     const [ modularON, setModularON ] = useState(false)
     const [ imageInModular, setImageInModular ] = useState('')
     const [ moduleType, setModuleType ] = useState('')
     const [ carouselInModular, setCarouselInModular ] = useState([])
     const [ hideLoadingFlower, setHideLoadingFlower ] = useState(false)
+    const [ loadedImages, setLoadedImages ] = useState([])
 
         // Browser path (ex. "/contact", "/about")
         const router = useRouter()
@@ -40,13 +40,13 @@ export default function Home() {
         }, [])
     
         useEffect(() => {
-            if(isFetching && !imgLoaded){
+            if(isFetching){
                 setTimeout(
                     () => setHideLoadingFlower(true),
                     2500
                 )
             }
-        }, [isFetching, imgLoaded])
+        }, [isFetching])
 
         // Query selector to target HTML element for GSAP effects
         const parentContainer = useRef()
@@ -68,10 +68,6 @@ export default function Home() {
         }, [pathname])
 
         
-    
-        const imageIsLoaded = () => {
-            setImgLoaded(true)
-        }
     
         const handleOnClickImage = (e) => {
             setModularON(true)
@@ -110,7 +106,14 @@ export default function Home() {
                 <div style={{ display: 'flex', alignItems: 'center', height: '100%', width: '100%' }}>
                     <img 
                         style={{ objectFit: 'contain', height: '100%', width: '100%' }} 
-                        onLoad={() => imageIsLoaded()}
+                        // onLoad={
+                        //     () => {
+                        //         if(props.itemKey){
+                        //             props.setLoadedImages((imagesKeys) => [...imagesKeys, props.itemKey])
+                        //         }
+                        //     }
+                        // }
+                        // loading='lazy'
                         onClick={() => handleOnClickCarousel(props.allImages)} 
                         src={props.item} 
                         alt="" 
@@ -123,13 +126,17 @@ export default function Home() {
             return (
                 <div style={{ display: 'flex', alignItems: 'center', height: '100%', width: '100%' }}>
                     <img style={{ objectFit: 'contain', height: '100%', width: '100%' }} 
-                    onLoad={() => imageIsLoaded()} 
                     loading='lazy'
                     src={props.item} 
                     alt="" />
                 </div>
             )
         }
+
+        useEffect(() => {
+          console.log(loadedImages)
+        }, [loadedImages])
+        
 
         // Retruning wordpress data into HTML using javascript //
         return (
@@ -159,7 +166,7 @@ export default function Home() {
                     <>
                     <div ref={parentContainer} className="portfolio-area-container">
                         {JSON_data.map((wp_item, key) => {
-                            
+
                             if(itemIsAGallery(wp_item) && wp_item.categories.includes(categoryNumber)){
                                 const gallery = wp_item.acf
                                 const imagesArray = [wp_item.featured_media_src_url]
@@ -174,7 +181,11 @@ export default function Home() {
                                     
                                     <div key={key} className="portfolio-img-caption-wrapper fade-in">
                                         <div className="portfolio-img-container">
-                                            <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '45%' }} />
+                                            {/* {
+                                                !loadedImages.includes(key)
+                                                &&
+                                                <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '45%',  }} />
+                                            } */}
                                             <Carousel 
                                             sx={{ display: 'flex'}}
                                             autoPlay={false} 
@@ -186,7 +197,7 @@ export default function Home() {
                                             navButtonsAlwaysVisible={true}>
                                                 {
                                                     imagesArray.map((image, key) => {
-                                                        return <CarouselItem item={image} key={key} allImages={imagesArray}/>
+                                                        return <CarouselItem item={image} itemKey={key} allImages={imagesArray} setLoadedImages={setLoadedImages} />
                                                     })
                                                 }
                                             </Carousel>
@@ -203,12 +214,26 @@ export default function Home() {
                             ){
                                 return (
                                     <div key={key} className="portfolio-img-caption-wrapper fade-in">
-                                        <div className="portfolio-img-container">
-                                            <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '45%' }} />
-                                            <img onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} loading='lazy' src={wp_item.featured_media_src_url} alt="" />
+                                        <div className={`portfolio-img-container ${!loadedImages.includes(key) ? 'placeholder-background' : null}`}>
+                                            {
+                                                !loadedImages.includes(key)
+                                                &&
+                                                <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '45%' }} />
+                                            }
+                                            
+                                            <img 
+                                            loading='lazy'
+                                            onLoad={
+                                                () => {
+                                                    if(key){
+                                                        setLoadedImages((imagesKeys) => [...imagesKeys, key])
+                                                    }
+                                                }    
+                                            } 
+                                            onClick={(e) => handleOnClickImage(e)} loading='lazy' src={wp_item.featured_media_src_url} alt="" />
                                             {/* <Image onLoadingComplete={imageIsLoaded} src={wp_item.featured_media_src_url} alt="" layout="fill" objectFit="contain" quality="100" />     */}
                                         </div>
-                                        {imgLoaded ? <div className="image-caption" dangerouslySetInnerHTML={{__html: wp_item.content.rendered}} /> : ""}
+                                        { true ? <div className="image-caption" dangerouslySetInnerHTML={{__html: wp_item.content.rendered}} /> : ""}
                                     </div>
                                     
                                 )

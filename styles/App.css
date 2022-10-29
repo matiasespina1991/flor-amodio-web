@@ -259,6 +259,11 @@ main div {
   min-height: 28rem;
   position: relative;
   cursor: pointer;
+
+}
+
+.placeholder-background{
+  background-color: #e8e8e8 !important;
 }
 
 .portfolio-img-container img {
