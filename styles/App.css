@@ -259,7 +259,9 @@ main div {
   min-height: 28rem;
   position: relative;
   cursor: pointer;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .placeholder-background{
