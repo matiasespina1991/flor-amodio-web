@@ -230,7 +230,8 @@ export default function Home() {
                                                     }
                                                 }    
                                             } 
-                                            onClick={(e) => handleOnClickImage(e)} loading='lazy' src={wp_item.featured_media_src_url} alt="" />
+                                            onClick={(e) => handleOnClickImage(e)} 
+                                            src={wp_item.featured_media_src_url} alt="" />
                                             {/* <Image onLoadingComplete={imageIsLoaded} src={wp_item.featured_media_src_url} alt="" layout="fill" objectFit="contain" quality="100" />     */}
                                         </div>
                                         { true ? <div className="image-caption" dangerouslySetInnerHTML={{__html: wp_item.content.rendered}} /> : ""}
