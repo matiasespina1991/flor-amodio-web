@@ -4,6 +4,7 @@ import CMS_PATH from '../components/CMS_PATH'
 import { gsap } from 'gsap'
 import axios from 'axios'
 import Carousel from 'react-material-ui-carousel'
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function Home() {
     // React state
@@ -14,6 +15,7 @@ export default function Home() {
     const [ imageInModular, setImageInModular ] = useState('')
     const [ moduleType, setModuleType ] = useState('')
     const [ carouselInModular, setCarouselInModular ] = useState([])
+    const [ hideLoadingFlower, setHideLoadingFlower ] = useState(false)
 
         // Browser path (ex. "/contact", "/about")
         const router = useRouter()
@@ -36,7 +38,15 @@ export default function Home() {
             }  
             getData()  
         }, [])
-
+    
+        useEffect(() => {
+            if(isFetching && !imgLoaded){
+                setTimeout(
+                    () => setHideLoadingFlower(true),
+                    2500
+                )
+            }
+        }, [isFetching, imgLoaded])
 
         // Query selector to target HTML element for GSAP effects
         const parentContainer = useRef()
@@ -56,6 +66,8 @@ export default function Home() {
             });
             // GSAP effect triggered by changes in the pathname
         }, [pathname])
+
+        
     
         const imageIsLoaded = () => {
             setImgLoaded(true)
@@ -112,6 +124,7 @@ export default function Home() {
                 <div style={{ display: 'flex', alignItems: 'center', height: '100%', width: '100%' }}>
                     <img style={{ objectFit: 'contain', height: '100%', width: '100%' }} 
                     onLoad={() => imageIsLoaded()} 
+                    loading='lazy'
                     src={props.item} 
                     alt="" />
                 </div>
@@ -124,7 +137,7 @@ export default function Home() {
                     <div 
                         className={`
                             loader-container 
-                            ${(isFetching && !imgLoaded) ? null : "hidden"}
+                            ${hideLoadingFlower ? "hidden" : null}
                         `}
                         style={{ width: "100%", height: "100%" }}
                     >
@@ -161,6 +174,7 @@ export default function Home() {
                                     
                                     <div key={key} className="portfolio-img-caption-wrapper fade-in">
                                         <div className="portfolio-img-container">
+                                            <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '45%' }} />
                                             <Carousel 
                                             sx={{ display: 'flex'}}
                                             autoPlay={false} 
@@ -190,7 +204,8 @@ export default function Home() {
                                 return (
                                     <div key={key} className="portfolio-img-caption-wrapper fade-in">
                                         <div className="portfolio-img-container">
-                                            <img onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={wp_item.featured_media_src_url} alt="" />
+                                            <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '45%' }} />
+                                            <img onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} loading='lazy' src={wp_item.featured_media_src_url} alt="" />
                                             {/* <Image onLoadingComplete={imageIsLoaded} src={wp_item.featured_media_src_url} alt="" layout="fill" objectFit="contain" quality="100" />     */}
                                         </div>
                                         {imgLoaded ? <div className="image-caption" dangerouslySetInnerHTML={{__html: wp_item.content.rendered}} /> : ""}

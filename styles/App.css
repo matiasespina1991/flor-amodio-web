@@ -49,6 +49,10 @@ img {
   filter: opacity(0);
 }
 
+.MuiCircularProgress-circle {
+  stroke: grey !important;
+}
+
 .close-modular {
   cursor: pointer;
   color: white;
@@ -252,6 +256,7 @@ main div {
 }
 
 .portfolio-img-container {
+  min-height: 28rem;
   position: relative;
   cursor: pointer;
 }

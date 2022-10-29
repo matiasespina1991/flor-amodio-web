@@ -4,6 +4,7 @@ import CMS_PATH from '../../components/CMS_PATH'
 import { gsap } from 'gsap'
 import axios from 'axios'
 import Carousel from 'react-material-ui-carousel'
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Portfolio() {
 
@@ -15,6 +16,7 @@ function Portfolio() {
     const [ imageInModular, setImageInModular ] = useState('')
     const [ moduleType, setModuleType ] = useState('')
     const [ carouselInModular, setCarouselInModular ] = useState([])
+    const [ hideLoadingFlower, setHideLoadingFlower ] = useState(false)
 
     // Browser path (ex. "/contact", "/about")
     const router = useRouter()
@@ -37,6 +39,17 @@ function Portfolio() {
         }  
         getData()  
     }, [pathname])
+
+    useEffect(() => {
+        if(isFetching && !imgLoaded){
+            setTimeout(
+                () => setHideLoadingFlower(true),
+                2500
+            )
+        }
+    }, [isFetching, imgLoaded])
+    
+
 
     // Query selector to target HTML element for GSAP effects
     const parentContainer = useRef()
@@ -114,12 +127,15 @@ function Portfolio() {
         return (
             <div style={{ display: 'flex', alignItems: 'center', height: '100%', width: '100%' }}>
                 <img style={{ objectFit: 'contain', height: '100%', width: '100%' }} 
+                loading='lazy'
                 onLoad={() => imageIsLoaded()} 
                 src={props.item} 
                 alt="" />
             </div>
         )
     }
+    
+
 
     // Retruning wordpress data into HTML using javascript //
     return (
@@ -127,7 +143,7 @@ function Portfolio() {
                 <div 
                     className={`
                         loader-container 
-                        ${(isFetching && !imgLoaded) ? null : "hidden"}
+                        ${hideLoadingFlower ? "hidden" : null}
                     `}
                     style={{ width: "100%", height: "100%" }}
                 >
@@ -165,6 +181,7 @@ function Portfolio() {
                                 
                                 <div key={key} className="portfolio-img-caption-wrapper fade-in">
                                     <div className="portfolio-img-container">
+                                        <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '45%' }} />
                                         <Carousel 
                                         sx={{ display: 'flex'}}
                                         autoPlay={false} 
@@ -194,7 +211,8 @@ function Portfolio() {
                             return (
                                 <div key={key} className="portfolio-img-caption-wrapper fade-in">
                                     <div className="portfolio-img-container">
-                                        <img onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={wp_item.featured_media_src_url} alt="" />
+                                        <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '45%' }} />
+                                        <img onLoad={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} loading='lazy' src={wp_item.featured_media_src_url} alt="" />
 
                                         {/* <Image height={400} loading="lazy" width={400} onLoadingComplete={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={wp_item.featured_media_src_url} alt="" /> */}
                                     </div>
