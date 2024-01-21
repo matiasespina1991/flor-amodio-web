@@ -22,7 +22,7 @@ export default function Home() {
         const pathname = router.query.id
 
         const categoryNumber = 125
-        http://localhost:3000/wp-json/gallery_plugin/v1/post/280
+       
         // Fetch from wordpress API
         useEffect(() => {     
             const getData = async () => {  
