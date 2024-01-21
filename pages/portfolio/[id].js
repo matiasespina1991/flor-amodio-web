@@ -31,7 +31,13 @@ function Portfolio() {
             await axios.get(`${CMS_PATH}/wp-json/wp/v2/portfolio?per_page=100&acf_format=standard&?filter[limit]=100`)  
             .then(wordpressApi => {  
                 const json = [wordpressApi.data] 
-                setJSON_data(json[0])
+
+                // filter json data by category, it should include the category number
+                const filteredJson = json[0].filter((item) => {
+                    return item.categories.includes(categoryNumber)
+                })
+                setJSON_data(filteredJson)
+                // setJSON_data(json[0])
                 setIsFetching(false)
             })  
             .catch(err => {  
@@ -113,7 +119,7 @@ function Portfolio() {
         return (
             <div style={{ display: 'flex', alignItems: 'center', height: '100%', width: '100%' }}>
                 <img 
-                    style={{ objectFit: 'contain', height: '100%', width: '100%' }} 
+                    style={{ objectFit: 'cover', height: '100%', width: '100%' }} 
                     onLoad={() => imageIsLoaded()} 
                     onClick={() => handleOnClickCarousel(props.allImages)} 
                     src={props.item} 
@@ -165,7 +171,15 @@ function Portfolio() {
                 </div>
                 <>
                 <div ref={parentContainer} className="portfolio-area-container">
+                    
+                <div className="portfolio-column-left">
                     {JSON_data.map((wp_item, key) => {
+
+                        // console.log('index', key)
+
+                        if(key % 2 !== 0){
+                            return
+                        }
                         
                         if(itemIsAGallery(wp_item) &&  wp_item.categories.includes(categoryNumber)){
 
@@ -180,7 +194,7 @@ function Portfolio() {
                 
                             return(
                                 
-                                <div key={key} className="portfolio-img-caption-wrapper fade-in">
+                                <div key={`${key}-left`} className={`portfolio-img-caption-wrapper fade-in img-key-${key}`}>
                                     <div className="portfolio-img-container">
                                         {/* <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '45%' }} /> */}
                                         <Carousel 
@@ -188,7 +202,6 @@ function Portfolio() {
                                         autoPlay={false} 
                                         animation="slide" 
                                         swipe={true}
-                                        height={420} 
                                         width={420}
                                         indicators={false} 
                                         navButtonsAlwaysVisible={true}>
@@ -210,7 +223,7 @@ function Portfolio() {
                             wp_item.categories.includes(categoryNumber)
                         ){
                             return (
-                                <div key={key} className="portfolio-img-caption-wrapper fade-in">
+                                <div key={`${key}-left`} className={`portfolio-img-caption-wrapper fade-in img-key-${key}`}>
                                     <div className={`portfolio-img-container ${!loadedImages.includes(key) ? 'placeholder-background' : null}`}>
                                         {
                                             !loadedImages.includes(key)
@@ -238,6 +251,86 @@ function Portfolio() {
                         }
                     })}
                 </div>
+
+                <div className="portfolio-column-right">
+                    {JSON_data.map((wp_item, key) => {
+
+                            if(key % 2 === 0){
+                                return
+                            }
+                        
+                        if(itemIsAGallery(wp_item) &&  wp_item.categories.includes(categoryNumber)){
+
+                            const gallery = wp_item.acf
+                            const imagesArray = [wp_item.featured_media_src_url]
+
+                            Object.entries(gallery).forEach((val,index) => {
+                                if(val[1] != false){
+                                    imagesArray.push(val[1])
+                                }
+                            })
+                
+                            return(
+                                
+                                <div key={`${key}-right`} className={`portfolio-img-caption-wrapper fade-in img-key-${key}`}>
+                                    <div className="portfolio-img-container">
+                                        {/* <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '45%' }} /> */}
+                                        <Carousel 
+                                        sx={{ display: 'flex'}}
+                                        autoPlay={false} 
+                                        animation="slide" 
+                                        swipe={true}
+                                        width={420}
+                                        indicators={false} 
+                                        navButtonsAlwaysVisible={true}>
+                                            {
+                                                imagesArray.map((image, key) => {
+                                                    return <CarouselItem item={image} key={key} allImages={imagesArray} />
+                                                })
+                                            }
+                                        </Carousel>
+                                        
+                                        <div className="image-caption" dangerouslySetInnerHTML={{__html: wp_item.content.rendered}} />
+                                    </div>
+                                </div>
+                                
+                            )
+                        }
+
+                        if(
+                            wp_item.categories.includes(categoryNumber)
+                        ){
+                            return (
+                                <div key={`${key}-right`} className={`portfolio-img-caption-wrapper fade-in img-key-${key}`}>
+                                    <div className={`portfolio-img-container ${!loadedImages.includes(key) ? 'placeholder-background' : null}`}>
+                                        {
+                                            !loadedImages.includes(key)
+                                            &&
+                                            <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '45%' }} />
+                                        }
+                                        <img 
+                                         onLoad={
+                                            () => {
+                                                if(key){
+                                                    setLoadedImages((imagesKeys) => [...imagesKeys, key])
+                                                }
+                                            }    
+                                        } 
+                                        onClick={(e) => handleOnClickImage(e)} 
+                                        loading='lazy' 
+                                        src={wp_item.featured_media_src_url} alt="" />
+
+                                        {/* <Image height={400} loading="lazy" width={400} onLoadingComplete={() => imageIsLoaded()} onClick={(e) => handleOnClickImage(e)} src={wp_item.featured_media_src_url} alt="" /> */}
+                                    </div>
+                                    {imgLoaded ? <div className="image-caption" dangerouslySetInnerHTML={{__html: wp_item.content.rendered}} /> : ""}
+                                </div>
+                                
+                            )
+                        }
+                    })}
+                </div>
+                    
+                </div>
                 <div className={`modular ${modularON ? "" : 'hidden-modular'}`} onClick={() => setModularON(false)} style={{zIndex: 8, overflow: 'hidden', height: '100%'}}>
                     <div onClick={() => handleCloseModular()} className="close-modular">X</div>
 
@@ -255,7 +348,7 @@ function Portfolio() {
                             <Carousel 
                                 sx={{ display: 'flex', height: '100%'}}
                                 autoPlay={false} 
-                                animation="slide" 
+                                // animation="slide" 
                                 className='modular-carousel'
                                 swipe={true}
                                 indicators={false} 
