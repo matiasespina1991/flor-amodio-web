@@ -3,10 +3,11 @@ import { useEffect, useState, useRef } from 'react';
 import { gsap } from 'gsap';
 import CMS_PATH from '../components/CMS_PATH';
 import axios from 'axios';
+import { useGlobalContext } from '../context/GlobalContext';
 
 export default function About(){
 
-    const [ data, setData ] = useState([])
+    // const [ data, setData ] = useState([])
 
     const router = useRouter()
     const {id} = router.query
@@ -14,16 +15,22 @@ export default function About(){
     const el = useRef();
     const q = gsap.utils.selector(el);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios(
-            `${CMS_PATH}/wp-json/wp/v2/pages/?slug=about`,
-            );
-            const dataJSON = [result.data];
-            setData(dataJSON[0]);
-        };
-        fetchData();
-        }, []);
+    const { aboutData } = useGlobalContext();
+
+    const data = aboutData;
+
+    // console.log('aboutData', aboutData)
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const result = await axios(
+    //         `${CMS_PATH}/wp-json/wp/v2/pages/?slug=about`,
+    //         );
+    //         const dataJSON = [result.data];
+    //         setData(dataJSON[0]);
+    //     };
+    //     fetchData();
+    //     }, []);
 
         useEffect(() => {
             gsap.fromTo(q(".fade-in"), {

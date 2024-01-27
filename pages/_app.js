@@ -8,15 +8,22 @@ import FlowerMenuIcon from '../components/FlowerMenuIcon';
 import ResponsiveNavbar from '../layouts/ResponsiveNavbar'
 import Head from 'next/head'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
+import CMS_PATH from '../components/CMS_PATH'
+import { GlobalProvider } from '../context/GlobalContext';
 
 function MyApp({ Component, pageProps }) {
 
   const [ DOMloading, setDOMloading ] = useState(true)
   const [ responsiveMenuIsExpanded, setResponsiveMenuIsExpanded ] = useState(false)
+  const [ aboutData, setAboutData ] = useState([])
+  const [ contactData, setContactData ] = useState([])
 
   useEffect(() => {
     setDOMloading(false)
   }, [])
+
+ 
 
   const handleFlowerIconOnClick = () => {
     setResponsiveMenuIsExpanded(prevSate => !prevSate)
@@ -48,19 +55,22 @@ function MyApp({ Component, pageProps }) {
       :
       <>
       <Header/>
-      <div className="body-wrapper">
-        <LeftNavbar  />
-        <div className="main-content-topnav-wrapper">
-          <TopNavbar responsiveMenuIsExpanded={responsiveMenuIsExpanded} handleFlowerIconOnClick={handleFlowerIconOnClick} />
-          <div className="responsive-navbar-container">
-            {/* <FlowerMenuIcon responsiveMenuIsExpanded={responsiveMenuIsExpanded} handleFlowerIconOnClick={handleFlowerIconOnClick} /> */}
-            <ResponsiveNavbar responsiveMenuIsExpanded={responsiveMenuIsExpanded}/>
+      <GlobalProvider>
+        <div className="body-wrapper">
+          <LeftNavbar  />
+          <div className="main-content-topnav-wrapper">
+            <TopNavbar responsiveMenuIsExpanded={responsiveMenuIsExpanded} handleFlowerIconOnClick={handleFlowerIconOnClick} />
+            <div className="responsive-navbar-container">
+              {/* <FlowerMenuIcon responsiveMenuIsExpanded={responsiveMenuIsExpanded} handleFlowerIconOnClick={handleFlowerIconOnClick} /> */}
+              <ResponsiveNavbar responsiveMenuIsExpanded={responsiveMenuIsExpanded}/>
+            </div>
+            <MainContent>
+              <Component {...pageProps} />
+            </MainContent>
           </div>
-          <MainContent>
-            <Component {...pageProps} />
-          </MainContent>
         </div>
-      </div>
+
+      </GlobalProvider>
       </>
       }
     </>

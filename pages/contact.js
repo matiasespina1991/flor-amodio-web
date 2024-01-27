@@ -1,12 +1,11 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState, useRef } from 'react';
 import { gsap } from 'gsap';
-import CMS_PATH from '../components/CMS_PATH';
-import axios from 'axios';
+import { useGlobalContext } from '../context/GlobalContext';
 
 export default function ContactPage(){
 
-    const [ data, setData ] = useState([])
+    // const [ data, setData ] = useState([])
 
     const router = useRouter()
     const {id} = router.query
@@ -14,16 +13,20 @@ export default function ContactPage(){
     const el = useRef();
     const q = gsap.utils.selector(el);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios(
-            `${CMS_PATH}/wp-json/wp/v2/pages/?slug=contact`,
-            );
-            const dataJSON = [result.data];
-            setData(dataJSON[0]);
-        };
-        fetchData();
-        }, []);
+    const { contactData } = useGlobalContext();
+
+    const data = contactData;
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         const result = await axios(
+    //         `${CMS_PATH}/wp-json/wp/v2/pages/?slug=contact`,
+    //         );
+    //         const dataJSON = [result.data];
+    //         setData(dataJSON[0]);
+    //     };
+    //     fetchData();
+    //     }, []);
 
     useEffect(() => {
         gsap.fromTo(q(".fade-in"), {
