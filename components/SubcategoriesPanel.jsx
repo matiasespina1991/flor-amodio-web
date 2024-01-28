@@ -1,10 +1,15 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router'
+import { useLayoutEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 
 function SubcategoriesPanel({categorySelected, categoryId, handleSubCategoryClick}) {
 
     const router = useRouter()
     const pathname = router.query.id
+
+    const el = useRef();
+    const q = gsap.utils.selector(el);
 
     const subcategoryData = [
         {
@@ -32,11 +37,11 @@ function SubcategoriesPanel({categorySelected, categoryId, handleSubCategoryClic
             "subcategory": "merch",
             "id": "merch-graphic-design"
         },
-        {
-            "parentCategory": "art-and-exhibition",
-            "subcategory": "demete",
-            "id": "demete"
-        },
+        // {
+        //     "parentCategory": "art-and-exhibition",
+        //     "subcategory": "demete",
+        //     "id": "demete"
+        // },
         {
             "parentCategory": "merch",
             "subcategory": "shop now",
@@ -44,13 +49,34 @@ function SubcategoriesPanel({categorySelected, categoryId, handleSubCategoryClic
         }
     ]
 
-    const classToggle = "isExpanded";
+    const isExpanded = "isExpanded";
+
+    const keepMenuExpanded = true;
+
+
+    useLayoutEffect(() => {
+        gsap.fromTo(q(".fade-in"), {
+            opacity: 0,
+            y: -30,
+        },{
+            opacity: 1,
+            delay: 1.9,
+            duration: 0.8,
+            ease: "power4",
+            y:0,
+            stagger: 0.35,
+        });
+    }, []);
+
 
     return(
         <div 
+            style={{opacity: 0}}
+            ref={el}
                 className={`
                     lower-panel
-                    ${categorySelected === categoryId ? classToggle : null}
+                    fade-in
+                    ${categorySelected === categoryId || keepMenuExpanded ? isExpanded : null}
                 `}
             >
                 <div className="sub-categories-container">

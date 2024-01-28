@@ -398,7 +398,7 @@ main div {
     overflow: hidden;
   }
   .responsive-navbar.isExpanded {
-    height: 10rem;
+    height: 7rem;
     overflow: visible;
   }
   .flower-menu-container {
@@ -469,7 +469,7 @@ main div {
     transform: translateY(0rem);
   }
   .main-content {
-    padding: 0 1rem;
+    padding: 0 0.8rem;
   }
 
   .image-caption {
@@ -492,6 +492,9 @@ main div {
     display: flex;
   }
 
+  .portfolio-img-container {
+    min-height: 90vw;
+  }
   
   .modular-image-container {
     height: fit-content;

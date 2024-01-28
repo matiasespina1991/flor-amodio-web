@@ -232,7 +232,7 @@ function Portfolio() {
                                         {
                                             !loadedImages.includes(key)
                                             &&
-                                            <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '39%' }} />
+                                            <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '43%' }} />
                                         }
                                         <img 
                                          onLoad={
@@ -310,7 +310,7 @@ function Portfolio() {
                                         {
                                             !loadedImages.includes(key)
                                             &&
-                                            <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '39%' }} />
+                                            <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '43%' }} />
                                         }
                                         <img 
                                          onLoad={
@@ -387,7 +387,7 @@ function Portfolio() {
                                         {
                                             !loadedImages.includes(key)
                                             &&
-                                            <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '39%' }} />
+                                            <CircularProgress color="inherit" sx={{ position: 'absolute', margin: '43%' }} />
                                         }
                                         <img 
                                          onLoad={

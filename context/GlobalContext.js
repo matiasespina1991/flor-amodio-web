@@ -22,6 +22,16 @@ export const GlobalProvider = ({ children }) => {
     fetchData();
     }, []);
 
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios(
+            `${CMS_PATH}/wp-json/wp/v2/pages/?slug=contact`,
+            );
+            const dataJSON = [result.data];
+            setContactData(dataJSON[0]);
+        };
+        fetchData();
+        }, []);
    
 
   return (
